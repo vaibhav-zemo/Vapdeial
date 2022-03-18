@@ -25,16 +25,29 @@ module.exports.sign_up = function (req,res) {
 }
 
 module.exports.create_user = function (req,res) {
-    user.create({
-        email:req.body.email,
-        password:req.body.password,
-        name:req.body.name
-    },function (err,data) {
+    // console.log(req.body);
+    if (req.body.password !=  req.body.confirm_password) {
+        return res.redirect('back');
+    }
+
+    user.findOne({email:req.body.email},function (err,data) {
         if (err) {
-            console.log("Error while creating the user");
+            console.log("Error while creating user");
             return;
         }
-        return res.redirect('/user/profile');
+
+        if (!data) {       
+            user.create(req.body,function (err,data) {
+            if (err) {
+                console.log("Error while creating the user");
+                return;
+            }
+            return res.redirect('/user/profile');
+            });
+        }
+        else{
+            return res.redirect('/user/sign_in');
+        }
     });
 }
 
