@@ -2,13 +2,13 @@ const passport = require('passport');
 
 const Localstrategy = require('passport-local').Strategy;
 
-const user = require('../models/user');
+const User = require('../models/user');
 
 passport.use(new Localstrategy({
-    usernameField: email
+    usernameField: 'email'
 },
     function (email, password, done) {
-        user.findOne({ email: email }, function (err, user) {
+        User.findOne({ email: email }, function (err, user) {
             if (err) {
                 console.log("Error while finding user ---> Passport");
                 return done(err);
@@ -20,25 +20,40 @@ passport.use(new Localstrategy({
             }
 
             return done(null, user);
-        })
+        });
     }
 ));
 
 
+passport.checkAuthentication = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+
+    return res.redirect('/user/sign_in');
+}
+
+passport.setAuthenticatedUser = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user;
+    }
+    next();
+}
+
 
 passport.serializeUser(function (user, done) {
-    return done(null, user.id);
+    done(null, user.id);
 });
 
 
 passport.deserializeUser(function (id, done) {
-    user.findById(id, function (err, user) {
+    User.findById(id, function (err, user) {
         if (err) {
             console.log("Error while finding user ---> Passport");
             return done(err);
         }
 
-        return done(null,user);
+        return done(null, user);
     })
 });
 
