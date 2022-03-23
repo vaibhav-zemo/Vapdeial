@@ -1,0 +1,27 @@
+header{
+    background-color: aquamarine;
+    display: flex;
+    height: 65px;
+    h1{
+        margin-left: 10px;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+    ul {
+        display: flex;
+        margin-left: 77%;
+        margin-top: 13px ;
+        li {
+            list-style: none;
+            margin: 10px;   
+            a{
+                color: white;
+                font-size: 2rem;
+                text-decoration: none;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
