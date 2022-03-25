@@ -2,10 +2,10 @@ const user = require('../models/user')
 const passport = require('passport');
 
 module.exports.profile = function (req, res) {
-    
+
     return res.render('profile', {
         title: 'Profile',
-        
+
     });
 }
 
@@ -64,7 +64,7 @@ module.exports.createSession = function (req, res) {
     return res.redirect('/');
 }
 
-module.exports.destroySession = function (req,res) {
+module.exports.destroySession = function (req, res) {
     req.logout();
 
     return res.redirect('/');
