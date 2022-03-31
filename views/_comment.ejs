@@ -1,0 +1,14 @@
+<li>
+    <p>
+        <%if(locals.user && user.id==comment.user.id){%>
+            <a href="/comment/destroy-comment/<%=comment.id%>">
+                Delete
+            </a>
+        <%}%>
+        <%= comment.content %>
+        <br>
+        <small>
+            <%= comment.user.name %>
+        </small>
+    </p>
+</li>

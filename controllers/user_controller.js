@@ -2,11 +2,23 @@ const user = require('../models/user')
 const passport = require('passport');
 
 module.exports.profile = function (req, res) {
-
-    return res.render('profile', {
-        title: 'Profile',
-
+    user.findById(req.params.id, function (err, data) {
+        return res.render('profile', {
+            title: 'Profile',
+            profile_user: data
+        });
     });
+}
+
+module.exports.update_info = function (req, res) {
+    if (req.params.id == req.user.id) {
+        user.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
+            return res.redirect('/');
+        });
+    }
+    else {
+        return res.status(401).send('Unauthorized');
+    }
 }
 
 module.exports.post = function (req, res) {
@@ -33,38 +45,39 @@ module.exports.sign_up = function (req, res) {
     })
 }
 
-module.exports.create_user = function (req, res) {
-    // console.log(req.body);
-    if (req.body.password != req.body.confirm_password) {
-        return res.redirect('back');
-    }
+module.exports.create_user = async function (req, res) {
 
-    user.findOne({ email: req.body.email }, function (err, data) {
-        if (err) {
-            console.log("Error while creating user");
-            return;
+    try {
+        if (req.body.password != req.body.confirm_password) {
+            return res.redirect('back');
         }
 
-        if (!data) {
+        let users = await user.findOne({ email: req.body.email });
+
+        if (!users) {
             user.create(req.body, function (err, data) {
-                if (err) {
-                    console.log("Error while creating the user");
-                    return;
-                }
-                return res.redirect('/user/profile');
+                return res.redirect('/user/profile/data.id');
             });
         }
         else {
             return res.redirect('/user/sign_in');
         }
-    });
+
+    } catch (err) {
+        console.log("Error", err);
+        return;
+    }
+    // console.log(req.body);
+
 }
 
 module.exports.createSession = function (req, res) {
+    req.flash('success','Successfully Logged In');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function (req, res) {
+    req.flash('success','Successfully Logged Out');
     req.logout();
 
     return res.redirect('/');

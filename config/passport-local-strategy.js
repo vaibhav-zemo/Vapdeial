@@ -1,3 +1,4 @@
+const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
 
 const Localstrategy = require('passport-local').Strategy;
@@ -5,17 +6,18 @@ const Localstrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 passport.use(new Localstrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback:true
 },
-    function (email, password, done) {
+    function (req,email, password, done) {
         User.findOne({ email: email }, function (err, user) {
             if (err) {
-                console.log("Error while finding user ---> Passport");
+                req.flash('error',err);
                 return done(err);
             }
 
             if (!user || user.password != password) {
-                console.log("Invalid Username/password");
+                req.flash('error',"Invalid Username/password");
                 return done(null, false);
             }
 
