@@ -1,7 +1,7 @@
-<li>
+<li id="comment-<%=comment.id%>">
     <p>
         <%if(locals.user && user.id==comment.user.id){%>
-            <a href="/comment/destroy-comment/<%=comment.id%>">
+            <a class="comment-delete-button" href="/comment/destroy-comment/<%=comment.id%>">
                 Delete
             </a>
         <%}%>

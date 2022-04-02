@@ -10,11 +10,37 @@ module.exports.profile = function (req, res) {
     });
 }
 
-module.exports.update_info = function (req, res) {
+module.exports.update_info = async function (req, res) {
+    // if (req.params.id == req.user.id) {
+    //     user.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
+    //         return res.redirect('/');
+    //     });
+    // }
+    // else {
+    //     return res.status(401).send('Unauthorized');
+    // }
+
+
     if (req.params.id == req.user.id) {
-        user.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
-            return res.redirect('/');
-        });
+        try {
+            let data = await user.findById(req.params.id);
+            
+            user.uploadAvatar(req,res,function (err) {
+                if(err) console.log("Multer Error",err);
+
+                data.name = req.body.name;
+                data.email = req.body.email;
+
+                if(req.file){
+                    data.avatar = user.avatarPath + '/' +  req.file.filename;
+                }
+                data.save();
+                return res.redirect('back');
+            });
+        } catch (err) {
+            console.log("Error", err);
+            return;
+        }
     }
     else {
         return res.status(401).send('Unauthorized');
@@ -72,12 +98,12 @@ module.exports.create_user = async function (req, res) {
 }
 
 module.exports.createSession = function (req, res) {
-    req.flash('success','Successfully Logged In');
+    req.flash('success', 'Successfully Logged In');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function (req, res) {
-    req.flash('success','Successfully Logged Out');
+    req.flash('success', 'Successfully Logged Out');
     req.logout();
 
     return res.redirect('/');

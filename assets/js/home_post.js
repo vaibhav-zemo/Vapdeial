@@ -13,9 +13,8 @@
                 success: function (data) {
                     let newPost = newPostdom(data.post);
                     $('#posts-list-container>ul').prepend(newPost);
-
-
-                    deletePost($(' .delete-button'), newPost);
+                    deletePost($(' .delete-button',newPost));
+                    new PostComments(data.post._id);
                 }, error: function (error) {
                     console.log(error.responseText);
                 }
@@ -23,9 +22,6 @@
 
         });
     };
-
-    
-    
 
 
     let newPostdom = function (post) {
@@ -60,7 +56,7 @@
             </li>`
         );
     };
-    
+
 
 
     let deletePost = function (deletelink) {
@@ -68,18 +64,30 @@
             e.preventDefault();
 
             $.ajax({
-                type:'get',
-                url : $(deletelink).prop('href'),
-                success:function (data) {
+                type: 'get',
+                url: $(deletelink).prop('href'),
+                success: function (data) {
                     $(`#post-${data.data.post_id}`).remove();
-                },error:function (error) {
+                }, error: function (error) {
                     console.log(error.responseText);
                 }
             })
         });
     }
 
+    let convertPostsToAjax = function () {
+        $('#posts-list-container>ul>li').each(function () {
+            let self = $(this);
+            let deleteButton = $(' .delete-button', self);
+            deletePost(deleteButton);
 
-    
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+        });
+    }
+
     createPost();
+    convertPostsToAjax();
+
 }
