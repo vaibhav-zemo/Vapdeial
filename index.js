@@ -9,6 +9,8 @@ const user = require('./models/user');
 const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require('./config/passport-local-strategy');
+const passportJwt = require('./config/passport-jwt-strategy');
+const passportGoogle  = require('./config/passport-google-oauth2-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
@@ -24,6 +26,9 @@ app.use(sassMiddleware({
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// make the upload path available to the brower
+app.use('/upload',express.static(__dirname + '/upload'));
 
 app.use(expresslayout);
 app.use(express.static('assets'));

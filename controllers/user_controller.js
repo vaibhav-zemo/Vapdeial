@@ -1,5 +1,7 @@
 const user = require('../models/user')
 const passport = require('passport');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function (req, res) {
     user.findById(req.params.id, function (err, data) {
@@ -24,15 +26,19 @@ module.exports.update_info = async function (req, res) {
     if (req.params.id == req.user.id) {
         try {
             let data = await user.findById(req.params.id);
-            
-            user.uploadAvatar(req,res,function (err) {
-                if(err) console.log("Multer Error",err);
+
+            user.uploadAvatar(req, res, function (err) {
+                if (err) console.log("Multer Error", err);
 
                 data.name = req.body.name;
                 data.email = req.body.email;
 
-                if(req.file){
-                    data.avatar = user.avatarPath + '/' +  req.file.filename;
+                if (req.file) {
+
+                    if (user.avatar) {
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+                    data.avatar = user.avatarPath + '/' + req.file.filename;
                 }
                 data.save();
                 return res.redirect('back');
