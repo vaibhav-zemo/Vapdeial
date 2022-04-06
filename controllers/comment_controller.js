@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const comment_mailer = require('../mailers/comment_mailer');
 
 module.exports.createComment = async function (req, res) {
     try {
@@ -16,18 +17,21 @@ module.exports.createComment = async function (req, res) {
         post.comments.push(comment);
         post.save();
 
+        comment = await comment.populate('user', 'name email');
+        comment_mailer.newComment(comment);
+
         if (req.xhr) {
             return res.status(200).json({
-                data:{
-                    comment:comment
+                data: {
+                    comment: comment
                 },
-                message:"Comment Created"
+                message: "Comment Created"
             });
         }
 
-        req.flash('success',"Your comment is published");
+        req.flash('success', "Your comment is published");
         return res.redirect('back');
-        
+
     } catch (err) {
         console.log("Error", err);
         return;
@@ -46,16 +50,16 @@ module.exports.destroy = async function (req, res) {
 
             if (req.xhr) {
                 return res.status(200).json({
-                    data:{
-                        comment_id :req.params.id
+                    data: {
+                        comment_id: req.params.id
                     },
-                    message:"Comment Destroyed"
+                    message: "Comment Destroyed"
                 });
             }
-            req.flash('success',"Your comment is deleted");
+            req.flash('success', "Your comment is deleted");
             return res.redirect('back');
         }
-        
+
     } catch (err) {
         console.log("Error", err);
         return;
