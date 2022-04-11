@@ -9,7 +9,13 @@ router.get('/post', userController.post);
 router.get('/sign_in', userController.sign_in);
 router.get('/sign_up', userController.sign_up);
 
+router.get('/forgot-password',userController.forgot);
+router.post('/reset-password',userController.reset);
+router.get('/change',userController.change);
+router.post('/change-password',userController.change_password);
+
 router.post('/create_user', userController.create_user);
+router.get('/wait',userController.wait);
 
 router.post('/create-session', passport.authenticate(
     'local',
