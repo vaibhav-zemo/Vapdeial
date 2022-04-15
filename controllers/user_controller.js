@@ -1,5 +1,7 @@
 const user = require('../models/user')
 const passport = require('passport');
+const reset_password = require('../models/reset_password');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const forgot_mailer = require('../mailers/forgot');
@@ -84,8 +86,21 @@ module.exports.forgot = function (req, res) {
     });
 }
 
-module.exports.reset = function (req, res) {
-    console.log("***************************req.body.email", req.body);
+module.exports.reset = async function (req, res) {
+    // console.log("***************************req.body.email", req.body);
+
+    let User = await user.findOne({ email: req.body.email });
+    if (!User) {
+        return res.redirect('back');
+    }
+
+    let rest = await reset_password.create({
+        accesstoken: crypto.randomBytes(20).toString('hex'),
+        user: User.id,
+        isvalid: true,
+    });
+
+
     forgot_mailer.forgot(req.body.email);
     return res.render('wait', {
         title: 'Wait',
@@ -98,25 +113,38 @@ module.exports.wait = function (req, res) {
     })
 }
 
-module.exports.change = function (req,res) {
-    return res.render('change',{
-        title:"Change Your Password",
-    });
+module.exports.change = async function (req, res) {
+    let reset = await reset_password.findOne({ accesstoken: req.params.id });
+    if (reset.isvalid) {
+        reset.save();
+        return res.render('change', {
+            title: "Change Your Password",
+            token: req.params.id
+        });
+    }
+    return res.send('<h1> Link is Expired!! </h1>');
 }
 
 module.exports.change_password = async function (req, res) {
+    
     if (req.body.password != req.body.confirm_password) {
         return res.redirect('back');
     }
+    
+    let reset = await reset_password.findOne({ accesstoken: req.params.id });
+    let resetPopulate = await reset.populate('user','email password');
 
-    let User = await user.find();
+    let User = await user.findOneAndUpdate({ email: resetPopulate.user.email });
 
     if (!User) {
+        console.log("user not found");
         return res.redirect('back');
     }
 
     User.password = req.body.confirm_password;
+    console.log("********user  change",User);
     User.save();
+    reset.isvalid = false;
     return res.redirect('/');
 }
 
