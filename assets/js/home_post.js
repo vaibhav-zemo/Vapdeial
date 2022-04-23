@@ -11,10 +11,23 @@
                 url: '/post/create-post',
                 data: newPostForm.serialize(),
                 success: function (data) {
-                    let newPost = newPostdom(data.post);
+                    let newPost = newPostdom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
-                    deletePost($(' .delete-button',newPost));
-                    new PostComments(data.post._id);
+
+                    new PostComments(data.data.post._id);
+                    deletePost($(' .delete-button', newPost));
+
+                    new ToggleLike($(' .toggle-like-button', newPost));
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post published!",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+
+                    }).show();
+
+
                 }, error: function (error) {
                     console.log(error.responseText);
                 }
@@ -37,6 +50,13 @@
             <small>
                 ${post.user.name}
             </small>
+
+            <small>
+                <a class="toggle-like-button" data-likes="0" href="/like/toggle/?id=${post._id}&type=Post">
+                    0 Likes
+                </a>
+            </small>
+
             </p>
             <div class="post-comments">
                 <form action="/comment/create-comment" method="post">
@@ -68,12 +88,22 @@
                 url: $(deletelink).prop('href'),
                 success: function (data) {
                     $(`#post-${data.data.post_id}`).remove();
+
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Deleted",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+
+                    }).show();
                 }, error: function (error) {
                     console.log(error.responseText);
                 }
             })
         });
     }
+
 
     let convertPostsToAjax = function () {
         $('#posts-list-container>ul>li').each(function () {

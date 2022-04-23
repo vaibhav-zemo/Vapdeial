@@ -116,6 +116,7 @@ module.exports.wait = function (req, res) {
 module.exports.change = async function (req, res) {
     let reset = await reset_password.findOne({ accesstoken: req.params.id });
     if (reset.isvalid) {
+        reset.isvalid = false;
         reset.save();
         return res.render('change', {
             title: "Change Your Password",
@@ -144,7 +145,6 @@ module.exports.change_password = async function (req, res) {
     User.password = req.body.confirm_password;
     console.log("********user  change",User);
     User.save();
-    reset.isvalid = false;
     return res.redirect('/');
 }
 

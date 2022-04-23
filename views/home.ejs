@@ -15,14 +15,13 @@
     
     
     <section id="posts-list-container">
-        
-    <ul>
-        <% for(post of posts){ %>
-            
-        <%-include('_post.ejs')-%>
-            
-        <%} %>
-    </ul>
+        <ul>
+            <% for(post of posts){ %>
+                
+            <%-include('_post.ejs')-%>
+                
+            <%} %>
+        </ul>
     </section>
 
     
@@ -45,3 +44,11 @@
 
 <script src="/js/home_comment.js"></script>
 <script src="/js/home_post.js"></script>
+
+<script src="js/home_like.js"></script>
+<script>
+    $(' .toggle-like-button').each(function () {
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    })
+</script>

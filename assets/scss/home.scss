@@ -1,17 +1,19 @@
-
-#heading{
+#heading {
     width: 60%;
     display: inline-block;
 }
-#user-container{
+
+#user-container {
     display: flex;
-    
-    #feed-posts{
+
+    #feed-posts {
         width: 70%;
     }
-    #user_list{
+
+    #user_list {
         width: 30%;
         border-left: 2px solid black;
         height: 20rem;
     }
 }
+

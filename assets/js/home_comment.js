@@ -15,7 +15,7 @@ class PostComments {
     }
 
 
-    createComment = function (postId) {
+    createComment(postId) {
         let pself = this;
         this.commentForm.submit(function (e) {
             e.preventDefault();
@@ -30,6 +30,16 @@ class PostComments {
                     $(`#post-comments-${postId}`).prepend(newComment);
 
                     pself.deleteComment($(' .comment-delete-button',newComment));
+
+                    new ToggleLike($(' .toggle-like-button', newComment));
+                    new Noty({
+                        theme: 'relax',
+                        text: "Comment published!",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+                        
+                    }).show();
                 }, error: function (error) {
                     console.log(error.responseText);
                 }
@@ -41,7 +51,7 @@ class PostComments {
 
 
 
-    commentDom = function (comment) {
+    commentDom(comment) {
         return $(`
         <li id="comment-${comment._id}">
             <p>
@@ -57,6 +67,12 @@ class PostComments {
                 ${comment.user.name}
                 </small>
 
+                <small>
+                <a class="toggle-like-button" data-likes="0" href="/like/toggle/?id=${comment._id}&type=Comment">
+                    0 Likes
+                </a>
+
+            </small>
             </p>
         </li>`
         );
@@ -72,6 +88,15 @@ class PostComments {
                 url: $(deleteLink).prop('href'),
                 success: function (data) {
                     $(`#comment-${data.data.comment_id}`).remove();
+
+                    new Noty({
+                        theme: 'relax',
+                        text: "Comment Deleted",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+                        
+                    }).show();
                 }, error: function (error) {
                     console.log(error.responseText);
                 }

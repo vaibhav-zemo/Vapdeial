@@ -1,6 +1,7 @@
 const post = require('../models/post');
 const user = require('../models/user');
 const comment = require('../models/comment');
+const likes = require('../models/likes');
 
 module.exports.home = async function (req, res) {
     // console.log(req.cookies);
@@ -14,8 +15,11 @@ module.exports.home = async function (req, res) {
                 path: 'comments',
                 populate: {
                     path: 'user'
+                },
+                populate:{
+                    path:'likes'
                 }
-            });
+            }).populate('likes');
 
         let users = await user.find({});
 

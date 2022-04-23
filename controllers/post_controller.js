@@ -1,6 +1,7 @@
 const post = require('../models/post');
 const user = require('../models/user');
 const comment = require('../models/comment');
+const Like = require('../models/likes');
 
 module.exports.createPost = async function (req, res) {
     try {
@@ -13,7 +14,9 @@ module.exports.createPost = async function (req, res) {
 
         if (req.xhr) {
             return res.status(200).json({
-                post: posts,
+                data:{
+                    post: posts,
+                },
                 message: "Post Created!"
             });
         }
@@ -32,6 +35,9 @@ module.exports.destroy = async function (req, res) {
         let posts = await post.findById(req.params.id);
 
         if (posts.user == req.user.id) {
+
+            await Like.deleteMany({likeable: posts, onModel: 'Post'});
+            await Like.deleteMany({_id: {$in: posts.comments}});
             posts.remove();
 
             if (req.xhr) {
