@@ -10,10 +10,15 @@
         width: 70%;
     }
 
-    #user_list {
+
+    aside{
         width: 30%;
         border-left: 2px solid black;
         height: 20rem;
+
+        #user_list{
+            border-top: 2px solid black;
+        }
     }
 }
 

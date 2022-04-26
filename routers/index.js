@@ -8,6 +8,7 @@ router.use('/user',require('./user'));
 router.use('/post',require('./post'));
 router.use('/comment',require('./comment'));
 router.use('/like',require('./like'));
+router.use('/friendship',require('./friend'));
 
 router.use('/api',require('./api'));
 

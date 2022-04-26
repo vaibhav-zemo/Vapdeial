@@ -1,4 +1,5 @@
 const user = require('../models/user')
+const friendship = require('../models/friendship');
 const passport = require('passport');
 const reset_password = require('../models/reset_password');
 const crypto = require('crypto');
@@ -6,13 +7,32 @@ const fs = require('fs');
 const path = require('path');
 const forgot_mailer = require('../mailers/forgot');
 
-module.exports.profile = function (req, res) {
-    user.findById(req.params.id, function (err, data) {
+module.exports.profile = async function (req, res) {
+
+    try {
+        let users = await user.findById(req.params.id);
+
+        let friend = await friendship.findOne({
+            from_user:req.user._id,
+            to_user:req.params.id,
+        });
+        
+        let have = false;
+        if (friend) {
+            have = true;
+        }
+
+        
         return res.render('profile', {
             title: 'Profile',
-            profile_user: data
+            profile_user: users,
+            have: have,
         });
-    });
+
+    } catch (error) {
+        console.log("Error", error);
+    }
+
 }
 
 module.exports.update_info = async function (req, res) {
@@ -44,6 +64,7 @@ module.exports.update_info = async function (req, res) {
                     data.avatar = user.avatarPath + '/' + req.file.filename;
                 }
                 data.save();
+                req.flash('success', "Profile is updated");
                 return res.redirect('back');
             });
         } catch (err) {
@@ -127,13 +148,13 @@ module.exports.change = async function (req, res) {
 }
 
 module.exports.change_password = async function (req, res) {
-    
+
     if (req.body.password != req.body.confirm_password) {
         return res.redirect('back');
     }
-    
+
     let reset = await reset_password.findOne({ accesstoken: req.params.id });
-    let resetPopulate = await reset.populate('user','email password');
+    let resetPopulate = await reset.populate('user', 'email password');
 
     let User = await user.findOneAndUpdate({ email: resetPopulate.user.email });
 
@@ -143,7 +164,7 @@ module.exports.change_password = async function (req, res) {
     }
 
     User.password = req.body.confirm_password;
-    console.log("********user  change",User);
+    console.log("********user  change", User);
     User.save();
     return res.redirect('/');
 }

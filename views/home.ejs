@@ -1,43 +1,91 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/chatting_engine.css">
 
-<h1 id="heading">Codeial/<%=title%></h1>
+<h1 id="heading">Codeial/<%=title%>
+</h1>
 
 <div id="user-container">
 
     <section id="feed-posts">
         <%if(locals.user){%>
-    <h4>Posts</h4>
-    <form action="/post/create-post" id="new-post-form" method="post">
-        <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
-        <input type="submit" value="Post">
-    </form>
-    <%}%>
-    
-    
-    <section id="posts-list-container">
-        <ul>
+            <h4>Posts</h4>
+            <form action="/post/create-post" id="new-post-form" method="post">
+                <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
+                <input type="submit" value="Post">
+            </form>
+        <%}%>
+
+
+        <section id="posts-list-container">
+            <ul>
             <% for(post of posts){ %>
-                
-            <%-include('_post.ejs')-%>
-                
+
+                <%-include('_post.ejs')-%>
+
             <%} %>
-        </ul>
+            </ul>
+        </section>
+
+
     </section>
 
-    
-</section>
-
-    <section id="user_list">
+    <aside>
+        <section id="friend_list">
         <h4>Friends</h4>
-    <ul>
-        <%for(u of all_user){%>
-            <li>
-                <a href="/user/profile/<%=u.id%>">
-                    <%=u.name%>
-                </a>
-            </li>
+        <ul>
+            <%for(friend of friends){%>
+                <li>
+                    <p><%= friend.to_user.name %></p>
+                </li>
+
+                <small>
+                    <%if(locals.user){%>
+                        <a href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
+                            Remove   
+                        </a>
+                    <%}%>
+                </small>
             <%}%>
         </ul>
+        </section>
+
+        <section id="user_list">
+        <h4>Users</h4>
+        <ul>
+            <%for(u of all_user){%>
+                <%if(locals.user){%>
+                    <%if(locals.user.name!=u.name){%>
+                        <li>
+                            <a href="/user/profile/<%=u.id%>">
+                                <%=u.name%>
+                            </a>
+                        </li>
+                    <%}%>
+                <%}else{%>
+                    <li>
+                        <a href="/user/profile/<%=u.id%>">
+                            <%=u.name%>
+                        </a>
+                    </li>
+                <%}%>
+
+            <%}%>
+            </ul>
+        </section>
+        
+    </aside>
+
+    <section id="chatting-engine">
+        <div id="chat">
+            <div id="sender">New Message</div>
+            <div id="you">Your Message</div>
+        </div>
+        <div id="message">
+            <form action="" method="post" id="chatting-form">
+                <input type="text" name="" id="" placeholder="Type your message">
+                <input type="button" value="Send" id="send-btu">
+            </form>
+        </div>
     </section>
 </div>
 

@@ -1,0 +1,42 @@
+#chatting-engine {
+    height: 190px;
+    width: 217px;
+    position: fixed;
+    right: 1px;
+    bottom: 0px;
+    background-color: white;
+    border: 2px solid black;
+
+    #chat {
+        height: 89%;
+        position: relative;
+
+        #sender {
+            background-color: pink;
+            display: inline-block;
+            position: absolute;
+            top: 20%;
+            padding: 2px;
+            border: 1px solid green;
+        }
+
+        #you {
+            display: inline-block;
+            background-color: aqua;
+            position: absolute;
+            right: 0px;
+            top: 62%;
+            padding: 2px;
+            border: 1px solid green;
+        }
+    }
+
+    #chatting-form {
+        display: flex;
+
+        #send-btu {
+            background-color: #42f04f;
+        }
+    }
+
+}
