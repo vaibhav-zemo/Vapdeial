@@ -26,9 +26,7 @@ module.exports.home = async function (req, res) {
 
         let friends = await friendship.find({}).populate('to_user');
 
-        let isfriend = await friendship.findOne({
-            
-        })
+        
         return res.render('home', {
             title: 'Home',
             posts: posts,

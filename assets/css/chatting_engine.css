@@ -8,23 +8,26 @@
   border: 2px solid black; }
   #chatting-engine #chat {
     height: 89%;
-    position: relative; }
-    #chatting-engine #chat #sender {
-      background-color: pink;
-      display: inline-block;
-      position: absolute;
-      top: 20%;
-      padding: 2px;
-      border: 1px solid green; }
-    #chatting-engine #chat #you {
-      display: inline-block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    overflow: scroll; }
+    #chatting-engine #chat .other-message p {
+      width: 50%;
       background-color: aqua;
-      position: absolute;
-      right: 0px;
-      top: 62%;
-      padding: 2px;
-      border: 1px solid green; }
+      text-align: center;
+      overflow-wrap: break-word; }
+    #chatting-engine #chat .self-message p {
+      width: 50%;
+      text-overflow: ellipsis;
+      background-color: aquamarine;
+      text-align: center;
+      margin-left: 50%; }
+  #chatting-engine #chat::-webkit-scrollbar {
+    display: none; }
   #chatting-engine #chatting-form {
     display: flex; }
     #chatting-engine #chatting-form #send-btu {
-      background-color: #42f04f; }
+      background-color: #42f04f;
+      color: white; }

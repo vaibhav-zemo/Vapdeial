@@ -4,31 +4,42 @@
     position: fixed;
     right: 1px;
     bottom: 0px;
+
     background-color: white;
     border: 2px solid black;
 
     #chat {
         height: 89%;
-        position: relative;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        overflow: scroll;
 
-        #sender {
-            background-color: pink;
-            display: inline-block;
-            position: absolute;
-            top: 20%;
-            padding: 2px;
-            border: 1px solid green;
+        .other-message {
+            
+            p{
+                width: 50%;
+                background-color:aqua;
+                text-align: center;
+                overflow-wrap: break-word;
+            }
         }
+        
+        .self-message {
+            
+            p{
+                width: 50%;
+                text-overflow: ellipsis;
+                background-color: aquamarine;
+                text-align: center;
+                margin-left: 50%;
+            }
+        }
+    }
 
-        #you {
-            display: inline-block;
-            background-color: aqua;
-            position: absolute;
-            right: 0px;
-            top: 62%;
-            padding: 2px;
-            border: 1px solid green;
-        }
+    #chat::-webkit-scrollbar { 
+        display: none; 
     }
 
     #chatting-form {
@@ -36,7 +47,7 @@
 
         #send-btu {
             background-color: #42f04f;
+            color: white;
         }
     }
-
 }

@@ -13,80 +13,90 @@
                 <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
                 <input type="submit" value="Post">
             </form>
-        <%}%>
+            <%}%>
 
 
-        <section id="posts-list-container">
-            <ul>
-            <% for(post of posts){ %>
+                <section id="posts-list-container">
+                    <ul>
+                        <% for(post of posts){ %>
 
-                <%-include('_post.ejs')-%>
+                            <%-include('_post.ejs')-%>
 
-            <%} %>
-            </ul>
-        </section>
+                                <%} %>
+                    </ul>
+                </section>
 
 
     </section>
 
     <aside>
         <section id="friend_list">
-        <h4>Friends</h4>
-        <ul>
-            <%for(friend of friends){%>
-                <li>
-                    <p><%= friend.to_user.name %></p>
-                </li>
+            <h4>Friends</h4>
+            <%if(locals.user){%>
+                <ul>
+                    <%for(friend of friends){%>
+                        <%if(friend.from_user==user.id){%>
+                            <li>
+                                <p>
+                                    <%= friend.to_user.name %>
+                                </p>
+                            </li>
 
-                <small>
-                    <%if(locals.user){%>
-                        <a href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
-                            Remove   
-                        </a>
-                    <%}%>
-                </small>
-            <%}%>
-        </ul>
+                            <small>
+                                <a href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
+                                    Remove
+                                </a>
+                            </small>
+                            <%}%>
+                                <%}%>
+                </ul>
+                <%}%>
         </section>
 
         <section id="user_list">
-        <h4>Users</h4>
-        <ul>
-            <%for(u of all_user){%>
-                <%if(locals.user){%>
-                    <%if(locals.user.name!=u.name){%>
-                        <li>
-                            <a href="/user/profile/<%=u.id%>">
-                                <%=u.name%>
-                            </a>
-                        </li>
-                    <%}%>
-                <%}else{%>
-                    <li>
-                        <a href="/user/profile/<%=u.id%>">
-                            <%=u.name%>
-                        </a>
-                    </li>
-                <%}%>
+            <h4>Users</h4>
+            <ul>
+                <%for(u of all_user){%>
+                    <%if(locals.user){%>
+                        <%if(locals.user.name!=u.name){%>
+                            <li>
+                                <a href="/user/profile/<%=u.id%>">
+                                    <%=u.name%>
+                                </a>
+                            </li>
+                            <%}%>
+                                <%}else{%>
+                                    <li>
+                                        <a href="/user/profile/<%=u.id%>">
+                                            <%=u.name%>
+                                        </a>
+                                    </li>
+                                    <%}%>
 
-            <%}%>
+                                        <%}%>
             </ul>
         </section>
-        
+
     </aside>
 
-    <section id="chatting-engine">
-        <div id="chat">
-            <div id="sender">New Message</div>
-            <div id="you">Your Message</div>
-        </div>
-        <div id="message">
-            <form action="" method="post" id="chatting-form">
-                <input type="text" name="" id="" placeholder="Type your message">
-                <input type="button" value="Send" id="send-btu">
-            </form>
-        </div>
-    </section>
+    <%if(locals.user){%>
+        <section id="chatting-engine">
+            <ul id="chat">
+                <li class="other-message">
+                    <p></p>
+                </li>
+                <li class="self-message">
+                    <p></p>
+                </li>
+            </ul>
+            <div id="message">
+                <form action="" method="post" id="chatting-form">
+                    <input type="text" name="" id="chat-message-input" placeholder="Type your message">
+                    <input type="button" value="Send" id="send-btu">
+                </form>
+            </div>
+        </section>
+        <%}%>
 </div>
 
 
@@ -100,3 +110,17 @@
         let toggleLike = new ToggleLike(self);
     })
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
+<%if(locals.user){%>
+    <script>
+        new ChatEngine('chatting-engine', '<%= locals.user.email %>');
+
+        setInterval(function () {
+            var scrollbar = document.querySelector('#chat');
+            scrollbar.scrollTop = scrollbar.scrollHeight - scrollbar.clientHeight;
+        },1);
+
+    </script>
+    <%}%>
