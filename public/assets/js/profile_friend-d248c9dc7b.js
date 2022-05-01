@@ -1,0 +1,1 @@
+$(" #toggle-friend-button").click((function(t){t.preventDefault();let n=this;$.ajax({type:"GET",url:$(n).attr("href")}).done((function(t){1==t.data.flag?$(n).html("Add"):$(n).html("Remove")})).fail((function(t){console.log("Error in toggling ",t)}))}));
