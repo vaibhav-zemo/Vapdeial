@@ -1,12 +1,8 @@
 {
   "css/chatting_engine.css": "css/chatting_engine-26f078ad00.css",
+  "css/chattingengine.css": "css/chattingengine-26f078ad00.css",
   "css/footer.css": "css/footer-14ca919108.css",
   "css/header.css": "css/header-a5ea3c9696.css",
   "css/home.css": "css/home-33caad36c5.css",
-  "css/layout.css": "css/layout-c5489d3555.css",
-  "js/chat_engine.js": "js/chat_engine-4b456effe4.js",
-  "js/home_comment.js": "js/home_comment-b5e34b1417.js",
-  "js/home_like.js": "js/home_like-bef29d6647.js",
-  "js/home_post.js": "js/home_post-11fe0934ce.js",
-  "js/profile_friend.js": "js/profile_friend-d248c9dc7b.js"
+  "css/layout.css": "css/layout-c5489d3555.css"
 }

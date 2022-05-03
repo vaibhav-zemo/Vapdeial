@@ -15,7 +15,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require('./config/passport-local-strategy');
 const passportJwt = require('./config/passport-jwt-strategy');
-const passportGoogle  = require('./config/passport-google-oauth2-strategy');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
@@ -28,32 +28,32 @@ const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000')
 
-if(env.name=='development'){
+if (env.name == 'development') {
     app.use(sassMiddleware({
-        src: path.join(__dirname,env.assets_path) + '/scss',
-        dest: path.join(__dirname,env.assets_path) + '/css',
-        debug:true,
-        outputStyle:'extended',
-        prefix:'/css',
+        src: path.join(__dirname, env.assets_path) + '/scss',
+        dest: path.join(__dirname, env.assets_path) + '/css',
+        debug: true,
+        outputStyle: 'extended',
+        prefix: '/css',
     }));
 }
-    
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // make the upload path available to the brower
-app.use('/upload',express.static(__dirname + '/upload'));
+app.use('/upload', express.static(__dirname + '/upload'));
 
 
 app.use(expresslayout);
 app.use(express.static(env.assets_path));
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-app.use(logger(env.morgan.mode,env.morgan.options));
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(session({
     name: 'codeial',
@@ -63,14 +63,14 @@ app.use(session({
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
-    store:  MongoStore.create(
-    {
-        mongoUrl:'mongodb://localhost:27017',
-        mongooseConnection: mongodb,
-        autoRemove: 'disabled'
-    }, function (err) {
-        console.log(err || 'connect-mongo');
-    })
+    store: MongoStore.create(
+        {
+            mongoUrl: 'mongodb://localhost:27017',
+            mongooseConnection: mongodb,
+            autoRemove: 'disabled'
+        }, function (err) {
+            console.log(err || 'connect-mongo');
+        })
 }));
 
 
