@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app = express();
 require('./config/view-helper')(app);
+
 const port = 8000;
 const path = require('path');
 const expresslayout = require('express-ejs-layouts');
