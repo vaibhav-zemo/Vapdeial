@@ -16,6 +16,7 @@ const passport = require('passport');
 const passportlocal = require('./config/passport-local-strategy');
 const passportJwt = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
@@ -24,14 +25,13 @@ const customWare = require('./config/middleware');
 // setup the chat sever to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
-
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000')
 
 if (env.name == 'development') {
     app.use(sassMiddleware({
-        src: path.join(__dirname, env.assets_path) + 'scss',
-        dest: path.join(__dirname, env.assets_path) + 'css',
+        src: path.join(__dirname, env.assets_path,'scss'),
+        dest: path.join(__dirname, env.assets_path,'css'),
         debug: true,
         outputStyle: 'extended',
         prefix: '/css',
