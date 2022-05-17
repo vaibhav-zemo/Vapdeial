@@ -51,3 +51,8 @@
 ::1 - - [15/May/2022:19:17:32 +0000] "GET /user/sign_in HTTP/1.1" 304 - "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
 ::1 - - [15/May/2022:19:17:37 +0000] "POST /user/create-session HTTP/1.1" 302 46 "http://localhost:8000/user/sign_in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
 ::1 - - [15/May/2022:19:17:38 +0000] "GET / HTTP/1.1" 200 7544 "http://localhost:8000/user/sign_in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+::1 - - [17/May/2022:18:52:30 +0000] "GET / HTTP/1.1" 200 4835 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+::1 - - [17/May/2022:18:52:30 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+::1 - - [17/May/2022:18:52:33 +0000] "GET /user/sign_in HTTP/1.1" 304 - "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+::1 - - [17/May/2022:18:52:39 +0000] "POST /user/create-session HTTP/1.1" 302 46 "http://localhost:8000/user/sign_in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+::1 - - [17/May/2022:18:52:39 +0000] "GET / HTTP/1.1" 200 7544 "http://localhost:8000/user/sign_in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
