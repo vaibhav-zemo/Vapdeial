@@ -65,6 +65,7 @@ app.use(session({
     },
     store: MongoStore.create(
         {
+            mongoUrl: 'mongodb://localhost/27017',
             mongooseConnection: mongodb,
             autoRemove: 'disabled'
         }, function (err) {
