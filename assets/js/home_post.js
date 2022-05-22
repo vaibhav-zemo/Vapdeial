@@ -14,10 +14,10 @@
                     let newPost = newPostdom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
 
-                    
-
                     new PostComments(data.data.post._id);
                     deletePost($(' .delete-button', newPost));
+
+                    console.log("he");
 
                     new ToggleLike($(' .toggle-like-button', newPost));
                     new Noty({
@@ -48,7 +48,7 @@
             <div id="head">
     
                 <small>
-                        ${post.user.name}
+                        ${post.user}
                 </small>
     
                 
@@ -88,7 +88,7 @@
             
     
             <div class="post-comments-list">
-                <ul id="post-comments- ${post._id} ">
+                <ul id="post-comments-${post._id} ">
                     
                 </ul>
             </div>
