@@ -8,9 +8,9 @@
 
     <section id="profile">
         
-            <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
-       
+        
         <% if(locals.user) {%>
+            <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
             <a href="/user/profile/<%=user.id%>">
                 <%= user.name %>
             </a>
