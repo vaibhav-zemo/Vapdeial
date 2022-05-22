@@ -16,9 +16,6 @@ module.exports.home = async function (req, res) {
                 path: 'comments',
                 populate: {
                     path: 'user'
-                },
-                populate: {
-                    path: 'likes'
                 }
             }).populate('likes');
 
@@ -26,7 +23,6 @@ module.exports.home = async function (req, res) {
 
         let friends = await friendship.find({}).populate('to_user');
 
-        
         return res.render('home', {
             title: 'Home',
             posts: posts,

@@ -49,7 +49,7 @@ const production = {
         port: 587,
         secure: false,
         auth: {
-            user: process.env.CODEIAL_GMAIL_USERNAMEL,
+            user: process.env.CODEIAL_GMAIL_USERNAME,
             pass: process.env.CODEIAL_GMAIL_PASSWORD,
         }
     },

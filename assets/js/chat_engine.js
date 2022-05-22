@@ -4,7 +4,7 @@ class ChatEngine{
         this.userEmail = userEmail;
 
         // this io.connect fires the event in the chat_socket .on('connection')
-        this.socket = io.connect('http://3.95.204.239:5000');
+        this.socket = io.connect('http://localhost:5000');
         // this io variable comes form the cdn of socket and this is global
 
         if (this.userEmail) {

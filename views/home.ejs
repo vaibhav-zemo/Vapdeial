@@ -1,30 +1,45 @@
 <link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
 <link rel="stylesheet" href="<%= assetPath('css/chatting-engine.css') %>" >
 
-<h1 id="heading">Codeial/<%=title%>
+<h1 id="heading"><%=title%>
 </h1>
 
 <div id="user-container">
 
+    <section id="profile">
+        
+            <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
+       
+        <% if(locals.user) {%>
+            <a href="/user/profile/<%=user.id%>">
+                <%= user.name %>
+            </a>
+        <%}%>
+    </section>
+
     <section id="feed-posts">
-        <%if(locals.user){%>
-            <h4>Posts</h4>
-            <form action="/post/create-post" id="new-post-form" method="post">
-                <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
-                <input type="submit" value="Post">
-            </form>
+
+        <section id="post-form">
+
+            <%if(locals.user){%>
+                <form action="/post/create-post" id="new-post-form" method="post">
+                    <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
+                    <input type="submit" value="Post">
+                </form>
             <%}%>
 
+        </section>
 
-                <section id="posts-list-container">
-                    <ul>
-                        <% for(post of posts){ %>
+        <h2>Feed</h2>
+        <section id="posts-list-container">
+            <ul id="post-list">
+                <% for(post of posts){ %>
 
-                            <%-include('_post.ejs')-%>
+                    <%-include('_post.ejs')-%>
 
-                                <%} %>
-                    </ul>
-                </section>
+                        <%} %>
+            </ul>
+        </section>
 
 
     </section>
@@ -47,8 +62,8 @@
                                     Remove
                                 </a>
                             </small>
-                            <%}%>
-                                <%}%>
+                        <%}%>
+                    <%}%>
                 </ul>
                 <%}%>
         </section>
