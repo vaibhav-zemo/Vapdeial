@@ -14,6 +14,8 @@
                     let newPost = newPostdom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
 
+                    
+
                     new PostComments(data.data.post._id);
                     deletePost($(' .delete-button', newPost));
 
@@ -40,40 +42,59 @@
     let newPostdom = function (post) {
 
         return $(`
-            <li id="post-${post._id}">
-            <p>
-                <a class="delete-button" href="/post/destroy/${post._id}">
-                    Delete
-                </a>
-            ${post.content}
-            <br>
-            <small>
-                ${post.user.name}
+        <li id="post-${post._id}" >
+        <p class="post-box">
+    
+            <div id="head">
+    
+                <small>
+                        ${post.user.name}
+                </small>
+    
+                
+                    <a class="delete-button" href="/post/destroy/${post.id}">
+                        Delete
+                    </a>
+                
+    
+            </div>
+                
+            <div id="content" style="border: 2px solid #000; margin: 4px; height: 5rem; width: 13rem; border-radius: 41px; text-align: center; overflow: hidden;">
+                <p>
+                ${post.content}
+                </p>
+            </div>
+    
+            <small id="like-comment">
+               
+                    <a class="toggle-like-button" data-likes="${post.likes.length} " href="/like/toggle/?id=${post._id}&type=Post">
+                        ${post.likes.length} Likes
+                    </a>
+                
+                    
+                
+    
             </small>
-
-            <small>
-                <a class="toggle-like-button" data-likes="0" href="/like/toggle/?id=${post._id}&type=Post">
-                    0 Likes
-                </a>
-            </small>
-
-            </p>
-            <div class="post-comments">
-                <form action="/comment/create-comment" method="post">
+            
+                <form id="comment-form-${post._id}" action="/comment/create-comment" method="post">
                     <input type="text" name="content" placeholder="Type Here to add comment..." required>
                     <input type="hidden" name="post" value="${post._id}" >
                     <input type="submit" value="Add Comment">
                 </form>
-
-                
+            
+        </p>
+    
+        
+            
+    
             <div class="post-comments-list">
-            <ul id="post-comments-${post._id}">
+                <ul id="post-comments- ${post._id} ">
                     
                 </ul>
             </div>
-            </div>
-
-            </li>`
+        
+        
+    </li>`
         );
     };
 

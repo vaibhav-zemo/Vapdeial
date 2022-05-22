@@ -62,8 +62,7 @@
             width: 13rem;
             border-radius: 41px;
             text-align: center;
-            overflow: scroll;
-            
+            overflow: hidden;
 
             p {
                 position: relative;
@@ -73,6 +72,8 @@
                 overflow-wrap: break-word;
             }
         }
+
+        
 
         #head {
             position: relative;
