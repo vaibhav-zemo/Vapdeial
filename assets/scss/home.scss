@@ -40,10 +40,62 @@
     aside {
         width: 30%;
         border-left: 2px solid black;
-        height: 20rem;
+        height: 31rem;
+
+        #friend_list {
+
+            h4 {
+                padding-left: 30px;
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                list-style: none;
+                padding-left: 30px;
+
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 17rem;
+
+                    #remove {
+                        background-color: blue;
+                        border-radius: 10px;
+
+                        a {
+                            text-decoration: none;
+                            color: white;
+                            padding: 8px;
+                        }
+                    }
+                }
+            }
+
+
+        }
 
         #user_list {
             border-top: 2px solid black;
+
+            h4 {
+                padding-left: 30px;
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            ul{
+                list-style: none;
+                padding-left: 30px;
+                margin-bottom: 10px;
+                li{
+                    a{
+                        text-decoration: none;
+                        color: black;
+                    }
+                }
+            }
         }
     }
 }
@@ -73,7 +125,7 @@
             }
         }
 
-        
+
 
         #head {
             position: relative;

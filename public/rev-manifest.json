@@ -1,3 +1,7 @@
 {
-  
+  "js/chat_engine.js": "js/chat_engine-2b2306aa2f.js",
+  "js/home_comment.js": "js/home_comment-b5e34b1417.js",
+  "js/home_like.js": "js/home_like-bef29d6647.js",
+  "js/home_post.js": "js/home_post-a0e90abcce.js",
+  "js/profile_friend.js": "js/profile_friend-d248c9dc7b.js"
 }

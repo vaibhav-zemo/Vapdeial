@@ -18,28 +18,44 @@
 
         .other-message {
             
-            p{
+            position: relative;
+            p {
                 width: 50%;
-                background-color:aqua;
+                background-color: aqua;
                 text-align: center;
                 overflow-wrap: break-word;
             }
+
+            sub {
+                position: absolute;
+                top: 20px;
+                font-size: 10px;
+            }
         }
-        
+
         .self-message {
-            
-            p{
+
+            position: relative;
+
+            p {
                 width: 50%;
                 text-overflow: ellipsis;
                 background-color: aquamarine;
                 text-align: center;
                 margin-left: 50%;
             }
+
+            sub {
+                font-size: 10px;
+                position: absolute;
+                right: 0px;
+                top: 21px;
+            }
         }
     }
 
-    #chat::-webkit-scrollbar { 
-        display: none; 
+    #chat::-webkit-scrollbar {
+        display: none;
     }
 
     #chatting-form {
@@ -50,4 +66,13 @@
             color: white;
         }
     }
+}
+
+#chatting-engine::before{
+    content: "Chat Engine";
+    position: absolute;
+    top: -24px;
+    left: 26%;
+    font-weight: bolder;
+    font-size: 19px;
 }

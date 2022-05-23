@@ -17,7 +17,6 @@
                     new PostComments(data.data.post._id);
                     deletePost($(' .delete-button', newPost));
 
-                    console.log("he");
 
                     new ToggleLike($(' .toggle-like-button', newPost));
                     new Noty({
@@ -48,13 +47,13 @@
             <div id="head">
     
                 <small>
-                        ${post.user}
+                        ${post.user.name}
                 </small>
     
                 
-                    <a class="delete-button" href="/post/destroy/${post.id}">
-                        Delete
-                    </a>
+                <a class="delete-button" href="/post/destroy/${post._id}">
+                    Delete
+                </a>
                 
     
             </div>
@@ -88,7 +87,7 @@
             
     
             <div class="post-comments-list">
-                <ul id="post-comments-${post._id} ">
+                <ul id="post-comments-${post._id}">
                     
                 </ul>
             </div>
