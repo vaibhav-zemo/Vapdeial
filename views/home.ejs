@@ -6,15 +6,15 @@
 
 <div id="user-container">
 
-    <section id="profile">
-
-
+    <section id="sec_profile">
         <% if(locals.user) {%>
-            <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
-            <a href="/user/profile/<%=user.id%>">
-                <%= user.name %>
-            </a>
-            <%}%>
+            <div id="profile">
+                <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
+                <a href="/user/profile/<%=user.id%>">
+                    <%= user.name %>
+                </a>
+            </div>
+        <%}%>
     </section>
 
     <section id="feed-posts">
@@ -23,8 +23,8 @@
 
             <%if(locals.user){%>
                 <form action="/post/create-post" id="new-post-form" method="post">
-                    <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
-                    <input type="submit" value="Post">
+                    <input id="content" name="content"  placeholder="Write here..."></input>
+                    <input id="submit" type="submit" value="Post">
                 </form>
                 <%}%>
 
@@ -53,7 +53,10 @@
                         <%if(friend.from_user==user.id){%>
                             <li>
                                 <p id="name">
-                                    <%= friend.to_user.name %>
+                                    <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="20">
+                                    <p>
+                                        <%= friend.to_user.name %>
+                                    </p>
                                 </p>
                                 <p id="remove">
                                     <a href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
@@ -79,9 +82,10 @@
                                     <%=u.name%>
                                 </a>
                             </li>
-                    <%}%>
-                        <%}else{%>
-                            <li>
+                            <%}%>
+                            <%}else{%>
+                                <li>
+                                <img src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
                                 <a href="/user/profile/<%=u.id%>">
                                     <%=u.name%>
                                 </a>

@@ -11,16 +11,15 @@ module.exports.home = async function (req, res) {
 
         let posts = await post.find({})
             .sort('-createdAt')
-            .populate('user')
+            .populate('user','name email')
             .populate({
                 path: 'comments',
                 populate: {
-                    path: 'user'
+                    path: 'user',
                 }
             }).populate('likes');
 
         let users = await user.find({}).populate('friendship');
-
         let friends = await friendship.find({}).populate('to_user');
 
         return res.render('home', {

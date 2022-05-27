@@ -1,4 +1,5 @@
 #chatting-engine {
+    z-index: 1;
     height: 190px;
     width: 217px;
     position: fixed;
@@ -69,6 +70,7 @@
 }
 
 #chatting-engine::before{
+    z-index: 1;
     content: "Chat Engine";
     position: absolute;
     top: -24px;

@@ -1,22 +1,42 @@
-header{
+header {
     background-color: aquamarine;
     display: flex;
     height: 65px;
-    h1{
+
+    h1 {
         margin-left: 10px;
-        a{
+
+        a {
             text-decoration: none;
             color: white;
         }
     }
+
     ul {
         display: flex;
         margin-left: 75%;
-        margin-top: 13px ;
+        margin-top: 13px;
+
+        div {
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 10px;
+            margin-left: 95px;
+        }
+
         li {
             list-style: none;
-            margin: 10px;   
-            a{
+            margin: 10px;
+
+            a {
                 color: white;
                 font-size: 2rem;
                 text-decoration: none;

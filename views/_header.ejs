@@ -6,16 +6,11 @@
     </h2>
     <ul>
         <% if(locals.user) {%>
-            <li>
-                <a href="/user/profile/<%=user.id%>">
-                    <%= user.name %>
-                </a>
-            <li>
+            <div>                
                 <a href="/user/sign_out">
                     Sign Out
                 </a>
-            </li>
-            </li>
+            </div>
             <%}else{%>
                 <li>
                     <a href="/user/sign_in">

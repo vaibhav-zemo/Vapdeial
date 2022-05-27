@@ -6,10 +6,15 @@
 #user-container {
     display: flex;
 
-    #profile {
+    #sec_profile{
+        width: 198px;
+        height: 42px;
+    }
+
+    #profile{
         border: 2px solid;
-        width: 14%;
-        height: 0%;
+        width: 100%;
+        height: 100%;
         display: flex;
         border-radius: 32px;
         padding: 5px;
@@ -34,6 +39,25 @@
     #feed-posts {
         margin-left: 8%;
         margin-right: 1%;
+
+        #post-form {
+            #content {
+                border-radius: 27px;
+                width: 176px;
+                height: 24px;
+                padding-left: 11px;
+            }
+
+            #submit {
+                border: none;
+                border-radius: 20px;
+                padding: 6px;
+                font-size: 15px;
+                width: 54px;
+                height: 29px;
+                background-color: #e4e4e4;
+            }
+        }
     }
 
 
@@ -59,10 +83,29 @@
                     display: flex;
                     justify-content: space-between;
                     width: 17rem;
+                    position: relative;
+
+                    #name {
+                        position: relative;
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                        }
+
+                        p {
+                            position: absolute;
+                            top: 14%;
+                            left: 18%;
+                        }
+                    }
 
                     #remove {
                         background-color: blue;
                         border-radius: 10px;
+                        height: 21px;
+                        margin-top: 26px;
 
                         a {
                             text-decoration: none;
@@ -84,15 +127,27 @@
                 font-size: 22px;
                 margin-bottom: 10px;
             }
-            
-            ul{
+
+            ul {
                 list-style: none;
                 padding-left: 30px;
                 margin-bottom: 10px;
-                li{
-                    a{
+
+                li {
+                    position: relative;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+
+                    a {
                         text-decoration: none;
                         color: black;
+                        position: absolute;
+                        top: 25%;
+                        left: 15%;
                     }
                 }
             }
