@@ -1,1 +1,56 @@
-#chatting-engine{z-index:1;height:190px;width:217px;position:fixed;right:1px;bottom:0;background-color:#fff;border:2px solid #000}#chatting-engine #chat{height:89%;width:100%;margin:0;padding:0;list-style:none;overflow:scroll}#chatting-engine #chat .other-message{position:relative}#chatting-engine #chat .other-message p{width:50%;background-color:aqua;text-align:center;overflow-wrap:break-word}#chatting-engine #chat .other-message sub{position:absolute;top:20px;font-size:10px}#chatting-engine #chat .self-message{position:relative}#chatting-engine #chat .self-message p{width:50%;text-overflow:ellipsis;background-color:#7fffd4;text-align:center;margin-left:50%}#chatting-engine #chat .self-message sub{font-size:10px;position:absolute;right:0;top:21px}#chatting-engine #chat::-webkit-scrollbar{display:none}#chatting-engine #chatting-form{display:flex}#chatting-engine #chatting-form #send-btu{background-color:#42f04f;color:#fff}#chatting-engine:before{z-index:1;content:"Chat Engine";position:absolute;top:-24px;left:26%;font-weight:bolder;font-size:19px}
+#chatting-engine {
+  z-index: 1;
+  height: 190px;
+  width: 217px;
+  position: fixed;
+  right: 1px;
+  bottom: 0px;
+  background-color: white;
+  border: 2px solid black; }
+  #chatting-engine #chat {
+    height: 89%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    overflow: scroll; }
+    #chatting-engine #chat .other-message {
+      position: relative; }
+      #chatting-engine #chat .other-message p {
+        width: 50%;
+        background-color: aqua;
+        text-align: center;
+        overflow-wrap: break-word; }
+      #chatting-engine #chat .other-message sub {
+        position: absolute;
+        top: 20px;
+        font-size: 10px; }
+    #chatting-engine #chat .self-message {
+      position: relative; }
+      #chatting-engine #chat .self-message p {
+        width: 50%;
+        text-overflow: ellipsis;
+        background-color: aquamarine;
+        text-align: center;
+        margin-left: 50%; }
+      #chatting-engine #chat .self-message sub {
+        font-size: 10px;
+        position: absolute;
+        right: 0px;
+        top: 21px; }
+  #chatting-engine #chat::-webkit-scrollbar {
+    display: none; }
+  #chatting-engine #chatting-form {
+    display: flex; }
+    #chatting-engine #chatting-form #send-btu {
+      background-color: #42f04f;
+      color: white; }
+
+#chatting-engine::before {
+  z-index: 1;
+  content: "Chat Engine";
+  position: absolute;
+  top: -24px;
+  left: 26%;
+  font-weight: bolder;
+  font-size: 19px; }

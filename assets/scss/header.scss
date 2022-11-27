@@ -1,47 +1,105 @@
 header {
-    background-color: aquamarine;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: aquamarine;
+
+  nav {
     display: flex;
-    height: 65px;
+    justify-content: space-between;
 
     h1 {
-        margin-left: 10px;
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
+      margin-left: 10px;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 800;
+        font-size: 28px;
+      }
     }
 
-    ul {
-        display: flex;
-        margin-left: 75%;
-        margin-top: 13px;
+    #second {
+      width: 155px;
+      list-style: none;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      margin-right: 8px;
+      align-items: center;
+      li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 21px;
+      }
+      margin-right: 8px;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        div {
-            a {
-                text-decoration: none;
-                color: white;
-            }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin-top: 10px;
-            margin-left: 95px;
-        }
+      .dropdown > input[type="checkbox"] {
+        position: absolute;
+        left: -100vw;
+      }
 
-        li {
-            list-style: none;
-            margin: 10px;
+      .dropdown > ul {
+        position: absolute;
+        z-index: 999;
+        display: block;
+        left: -105vw;
+        top: calc(1.5em + 14px);
+        border: 1px solid #8c8c8c;
+        background: #fff;
+        padding: 6px 0;
+        margin: 0;
+        list-style: none;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      }
 
-            a {
-                color: white;
-                font-size: 2rem;
-                text-decoration: none;
-                font-size: 1.2rem;
-            }
-        }
+      .dropdown > ul a {
+        display: block;
+        padding: 6px 15px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .dropdown > ul a:hover,
+      .dropdown > ul a:focus {
+        background: #ececec;
+      }
+
+      .dropdown > input[type="checkbox"]:checked ~ ul,
+      .dropdown > ul:target {
+        left: -62px;
+        top: 45px;
+      }
+
+      .dropdown a.close {
+        display: none;
+      }
+
+      .dropdown > ul:target ~ a.close {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        text-indent: -100vw;
+        z-index: 1000;
+      }
     }
+  }
 }

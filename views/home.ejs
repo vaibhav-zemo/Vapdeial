@@ -1,21 +1,7 @@
 <link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
 <link rel="stylesheet" href="<%= assetPath('css/chatting-engine.css') %>">
-<h1 id="heading">
-    <%=title%>
-</h1>
 
-<div id="user-container">
-
-    <section id="sec_profile">
-        <% if(locals.user) {%>
-            <div id="profile">
-                <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
-                <a href="/user/profile/<%=user.id%>">
-                    <%= user.name %>
-                </a>
-            </div>
-        <%}%>
-    </section>
+<section id="user-container">
 
     <section id="feed-posts">
 
@@ -23,7 +9,7 @@
 
             <%if(locals.user){%>
                 <form action="/post/create-post" id="new-post-form" method="post">
-                    <input id="content" name="content"  placeholder="Write here..."></input>
+                    <input id="content" name="content" placeholder="Write here..."></input>
                     <input id="submit" type="submit" value="Post">
                 </form>
                 <%}%>
@@ -46,22 +32,22 @@
 
     <aside>
         <section id="friend_list">
-            <h4>Friends</h4>
+            <h4 class="heading">Friends</h4>
             <%if(locals.user){%>
-                <ul>
+                <ul class="list">
                     <%for(friend of friends){%>
                         <%if(friend.from_user==user.id){%>
-                            <li>
-                                <p id="name">
-                                    <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="20">
-                                    <p>
-                                        <%= friend.to_user.name %>
-                                    </p>
+                            <li class="items">
+                                <p>
+                                    <img class="logo" src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="20">
+                                <p class="name">
+                                    <%= friend.to_user.name %>
                                 </p>
-                                <p id="remove">
-                                    <a href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
-                                        Remove
-                                    </a>                                
+                                </p>
+                                <p >
+                                    <a class="remove" href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
+                                        x
+                                    </a>
                                 </p>
                             </li>
                             <%}%>
@@ -71,35 +57,35 @@
         </section>
 
         <section id="user_list">
-            <h4>Users</h4>
-            <ul>
+            <h4 class="heading">Users</h4>
+            <ul class="list">
                 <%for(u of all_user){%>
                     <%if(locals.user){%>
                         <%if(locals.user.name!=u.name){%>
-                            <li>
-                                <img src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                            <li class="items">
+                                <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
                                 <a href="/user/profile/<%=u.id%>">
                                     <%=u.name%>
                                 </a>
                             </li>
                             <%}%>
-                            <%}else{%>
-                                <li>
-                                <img src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
-                                <a href="/user/profile/<%=u.id%>">
-                                    <%=u.name%>
-                                </a>
-                            </li>
-                        <%}%>
+                                <%}else{%>
+                                    <li>
+                                        <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                        <a href="/user/profile/<%=u.id%>">
+                                            <%=u.name%>
+                                        </a>
+                                    </li>
+                                    <%}%>
 
-                    <%}%>
+                                        <%}%>
             </ul>
         </section>
 
     </aside>
 
     <%if(locals.user){%>
-        
+
         <section id="chatting-engine">
             <ul id="chat">
                 <li class="other-message">
@@ -117,7 +103,7 @@
             </div>
         </section>
         <%}%>
-</div>
+</section>
 
 
 <script src="<%= assetPath('js/home_comment.js') %>"></script>
@@ -138,7 +124,7 @@
     <script>
         new ChatEngine('chatting-engine', '<%= locals.user.email %>');
 
-       var down = setInterval(function () {
+        var down = setInterval(function () {
             var scrollbar = document.querySelector('#chat');
             scrollbar.scrollTop = scrollbar.scrollHeight - scrollbar.clientHeight;
         }, 1);

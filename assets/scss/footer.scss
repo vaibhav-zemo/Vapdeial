@@ -1,20 +1,17 @@
-footer{
-    background-color: grey;
-    color: white;
+footer {
+  background-color: grey;
+  color: white;
+  display: flex;
+  #copy {
     display: flex;
-    width: 100%;
-    position:absolute;
-    top: 120rem;    
-    #copy{
-        display: flex;
-        margin: 5px;
+    margin: 5px;
+  }
+  #link {
+    margin: 5px;
+    margin-left: 10px;
+    a {
+      text-decoration: none;
+      color: white;
     }
-    #link{
-        margin: 5px;
-        margin-left: 10px;
-        a{
-            text-decoration: none;
-            color: white;
-        }
-    }
+  }
 }

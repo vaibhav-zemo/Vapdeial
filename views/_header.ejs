@@ -1,17 +1,30 @@
 <header>
-    <h1>
-        <a href="/">
-            Codeial
-        </a>
-    </h2>
-    <ul>
-        <% if(locals.user) {%>
-            <div>                
-                <a href="/user/sign_out">
-                    Sign Out
-                </a>
-            </div>
-            <%}else{%>
+    <nav>
+        <h1>
+            <a href="/">
+                Codeial
+            </a>
+        </h1>
+        <ul id="second">
+            <% if(locals.user) {%>
+                <div class="dropdown">
+                    <input type="checkbox" id="my-dropdown" value="" name="my-checkbox">
+                    <label for="my-dropdown"
+                       data-toggle="dropdown">
+                    <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
+                    </label>
+                    <ul>
+                        <a href="/user/profile/<%=user.id%>">
+                            My Profile
+                        </a>
+                        <a href="/user/sign_out">
+                            Sign Out
+                        </a>
+                    </ul>
+                </div>
+            <%}
+            else
+            {%>
                 <li>
                     <a href="/user/sign_in">
                         Sign In
@@ -23,5 +36,6 @@
                     </a>
                 </li>
             <%}%>
-    </ul>
+        </ul>
+    </nav>
 </header>

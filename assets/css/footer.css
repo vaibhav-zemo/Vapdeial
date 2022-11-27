@@ -1,1 +1,13 @@
-footer{background:linear-gradient(146.5deg, rgb(49, 49, 56) 3.6%, rgb(120, 130, 150) 105.8%);;color:#fff;display:flex;width:100%;position:absolute;top:120rem}footer #copy{display:flex;margin:5px}footer #link{margin:5px;margin-left:10px}footer #link a{text-decoration:none;color:#fff}
+footer {
+  background-color: grey;
+  color: white;
+  display: flex; }
+  footer #copy {
+    display: flex;
+    margin: 5px; }
+  footer #link {
+    margin: 5px;
+    margin-left: 10px; }
+    footer #link a {
+      text-decoration: none;
+      color: white; }
