@@ -21,6 +21,7 @@ User can reset his/her password.
 
 ## Installation
 
-1. run npm i to install all required library.
+1. Clone this [repo](https://github.com/vaibhav-zemo/Vapdeial) into your local system.
+1. run ```npm i``` on your console to install all required library.
 2. You need to install redis server on your system.
    Go your it's documentation [redis](https://redis.io/docs/getting-started/)
