@@ -1,6 +1,6 @@
 const express = require('express');
 const env = require('./config/enviroment');
-const logger = require('morgan');
+// const logger = require('morgan');
 
 const cookieParser = require('cookie-parser');
 const app = express();
@@ -53,7 +53,7 @@ app.use(cookieParser());
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-app.use(logger(env.morgan.mode, env.morgan.options));
+// app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(session({
     name: 'codeial',

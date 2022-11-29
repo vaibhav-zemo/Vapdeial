@@ -24,13 +24,13 @@ module.exports.createComment = async function (req, res) {
 
         // comment_mailer.newComment(comment);
 
-        let job = queue.create('emails', comment).save(function (err) {
-            if (err) {
-                console.log('Error in sending to the queue', err);
-                return;
-            }
-            console.log("Job ", job.id);
-        });
+        // let job = queue.create('emails', comment).save(function (err) {
+        //     if (err) {
+        //         console.log('Error in sending to the queue', err);
+        //         return;
+        //     }
+        //     console.log("Job ", job.id);
+        // });
 
         if (req.xhr) {
             return res.status(200).json({

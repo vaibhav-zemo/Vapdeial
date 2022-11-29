@@ -54,26 +54,38 @@ class PostComments {
     commentDom(comment) {
         return $(`
         <li id="comment-${comment._id}">
-            <p>
-                
-                <a id="comment-delete-button" href="/comment/destroy-comment/${comment._id}">
-                    Delete
-                </a>
-                        
-                 ${comment.content}
+            
+            <div id="first">
+                <div id="photo">
+                    <img src="${comment.user.avatar}" alt="">
+                </div>
 
-                <br>
-                <small>
-                ${comment.user.name}
-                </small>
 
-                <small>
-                <a class="toggle-like-button" data-likes="0" href="/like/toggle/?id=${comment._id}&type=Comment">
-                    0 Likes
-                </a>
+                <div id="content">
+                    <small>
+                    ${comment.user.name}
+                    </small>
+                    ${comment.content}
+                </div>
+            </div>
 
-            </small>
-            </p>
+            <div id="button">
+                <div id="love">
+                    <a class="toggle-like-button" data-likes="0" href="/like/toggle/?id=${comment._id}&type=Comment">
+                        <span style="color: black;">
+                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                        </span>
+                        0 Likes
+                    </a>
+                </div>
+
+                <div id="delete">
+                    <a class="comment-delete-button" style="color: red; text-decoration: none;" href="/comment/destroy-comment/${comment._id}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+            
         </li>`
         );
     };

@@ -9,7 +9,8 @@
             <section id="post-form">
 
                 <form action="/post/create-post" id="new-post-form" method="post">
-                    <input id="content" name="content" placeholder="Write here..."></input>
+                    <!-- <input id="content" name="content" placeholder="Write here..."></input> -->
+                    <textarea id="content" name="content" placeholder="Write here... "></textarea>
                     <!-- <input type="file" name="img" placeholder="Post Img"> -->
                     <input id="submit" type="submit" value="Post">
                 </form>
@@ -24,7 +25,7 @@
 
                             <%-include('_post.ejs')-%>
 
-                                <%} %>
+                        <%} %>
                     </ul>
                 </section>
 
@@ -61,12 +62,12 @@
 
                 <section id="user_list">
                     <h4 class="heading">Users</h4>
-                    <ul class="list">
+                    <ul class="lista">
                         <%for(u of all_user){%>
                             <%if(locals.user){%>
                                 <%if(locals.user.name!=u.name){%>
-                                    <li class="items">
-                                        <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                    <li class="itemsa">
+                                        <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
                                         <a href="/user/profile/<%=u.id%>">
                                             <%=u.name%>
                                         </a>
@@ -74,7 +75,7 @@
                                     <%}%>
                                         <%}else{%>
                                             <li>
-                                                <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                                <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
                                                 <a href="/user/profile/<%=u.id%>">
                                                     <%=u.name%>
                                                 </a>

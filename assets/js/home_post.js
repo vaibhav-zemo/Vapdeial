@@ -1,50 +1,45 @@
 {
-    let createPost = function () {
-        let newPostForm = $('#new-post-form');
+  let createPost = function () {
+    let newPostForm = $('#new-post-form');
+    newPostForm.submit(function (e) {
+      e.preventDefault();
+      console.log('p2');
 
-        newPostForm.submit(function (e) {
-            e.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '/post/create-post',
+        data: newPostForm.serialize(),
+        success: function (data) {
+          let newPost = newPostdom(data.data.post);
 
+          $('#posts-list-container>ul').prepend(newPost);
 
-            $.ajax({
-                type: 'post',
-                url: '/post/create-post',
-                data: newPostForm.serialize(),
-                success: function (data) {
-                    let newPost = newPostdom(data.data.post);
-                    $('#posts-list-container>ul').prepend(newPost);
+          new PostComments(data.data.post._id);
+          deletePost($(' .delete-button', newPost));
 
-                    new PostComments(data.data.post._id);
-                    deletePost($(' .delete-button', newPost));
+          new ToggleLike($(' .toggle-like-button', newPost));
+          new Noty({
+            theme: 'relax',
+            text: 'Post published!',
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500,
+          }).show();
+        },
+        error: function (error) {
+          console.log(error.responseText);
+        },
+      });
+    });
+  };
 
-
-                    new ToggleLike($(' .toggle-like-button', newPost));
-                    new Noty({
-                        theme: 'relax',
-                        text: "Post published!",
-                        type: 'success',
-                        layout: 'topRight',
-                        timeout: 1500
-
-                    }).show();
-
-
-                }, error: function (error) {
-                    console.log(error.responseText);
-                }
-            });
-
-        });
-    };
-
-
-    let newPostdom = function (post) {
-
-        return $(`
+  let newPostdom = function (post) {
+    return $(`
         <li id="post-${post._id}" >
-        <p class="post-box">
     
             <div id="head">
+
+                <img src="${post.user.avatar}" alt="" width="20">
     
                 <small>
                         ${post.user.name}
@@ -52,38 +47,37 @@
     
                 
                 <a class="delete-button" href="/post/destroy/${post._id}">
-                    Delete
+                    <i class="fa-solid fa-trash"></i>
                 </a>
                 
-    
             </div>
                 
-            <div id="content" style="border: 2px solid #000; margin: 4px; height: 5rem; width: 13rem; border-radius: 41px; text-align: center; overflow: hidden;">
+            <div id="content">
                 <p>
-                ${post.content}
+                    ${post.content}
                 </p>
             </div>
     
-            <small id="like-comment">
-               
-                    <a class="toggle-like-button" data-likes="${post.likes.length} " href="/like/toggle/?id=${post._id}&type=Post">
+            <div id="comment">
+
+                <small id="like-comment">
+                
+                    <a class="toggle-like-button" data-likes="${post.likes.length}" href="/like/toggle/?id=${post._id}&type=Post">
+                        <span style="color: black;">
+                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                        </span>
                         ${post.likes.length} Likes
                     </a>
-                
-                    
-                
-    
-            </small>
-            
+                                
+                </small>
+
                 <form id="comment-form-${post._id}" action="/comment/create-comment" method="post">
-                    <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                    <input id="text" type="text" name="content" placeholder="Add a comment..." required>
                     <input type="hidden" name="post" value="${post._id}" >
-                    <input type="submit" value="Add Comment">
+                    <input  id="submit" type="submit" value="Post">
                 </form>
-            
-        </p>
-    
-        
+
+            </div>
             
     
             <div class="post-comments-list">
@@ -93,51 +87,46 @@
             </div>
         
         
-    </li>`
-        );
-    };
+    </li>`);
+  };
 
+  let deletePost = function (deletelink) {
+    $(deletelink).click(function (e) {
+      e.preventDefault();
 
+      $.ajax({
+        type: 'get',
+        url: $(deletelink).prop('href'),
+        success: function (data) {
+          $(`#post-${data.data.post_id}`).remove();
 
-    let deletePost = function (deletelink) {
-        $(deletelink).click(function (e) {
-            e.preventDefault();
+          new Noty({
+            theme: 'relax',
+            text: 'Post Deleted',
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500,
+          }).show();
+        },
+        error: function (error) {
+          console.log(error.responseText);
+        },
+      });
+    });
+  };
 
-            $.ajax({
-                type: 'get',
-                url: $(deletelink).prop('href'),
-                success: function (data) {
-                    $(`#post-${data.data.post_id}`).remove();
+  let convertPostsToAjax = function () {
+    $('#posts-list-container>ul>li').each(function () {
+      let self = $(this);
+      let deleteButton = $(' .delete-button', self);
+      deletePost(deleteButton);
 
-                    new Noty({
-                        theme: 'relax',
-                        text: "Post Deleted",
-                        type: 'success',
-                        layout: 'topRight',
-                        timeout: 1500
+      // get the post's id by splitting the id attribute
+      let postId = self.prop('id').split('-')[1];
+      new PostComments(postId);
+    });
+  };
 
-                    }).show();
-                }, error: function (error) {
-                    console.log(error.responseText);
-                }
-            })
-        });
-    }
-
-
-    let convertPostsToAjax = function () {
-        $('#posts-list-container>ul>li').each(function () {
-            let self = $(this);
-            let deleteButton = $(' .delete-button', self);
-            deletePost(deleteButton);
-
-            // get the post's id by splitting the id attribute
-            let postId = self.prop('id').split("-")[1]
-            new PostComments(postId);
-        });
-    }
-
-    createPost();
-    convertPostsToAjax();
-
+  createPost();
+  convertPostsToAjax();
 }

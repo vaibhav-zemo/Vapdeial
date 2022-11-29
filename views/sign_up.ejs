@@ -1,16 +1,23 @@
+<link rel="stylesheet" href="<%= assetPath('css/signout.css') %>">
+<div id="main">
+    <div id="signout_box">
 
-    <h1>Sign Up</h1>
+        <h1>Sign Up</h1>
 
-    <form action="/user/create_user" method="post">
-        <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
-        <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
-        <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
-        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Your Password" required>
-        <input type="submit" value="Sign Up">
-    </form>
-
-    <p>
-        <a href="/user/auth/google">
-            Google SignIn/SignUp
-        </a>
-    </p>
+        <form action="/user/create_user" method="post">
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+            <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Your Password"
+                required>
+            <input type="submit" value="Sign Up">
+        </form>
+        <div id="last">
+            <p>
+                <a href="/user/auth/google">
+                    Google SignIn/SignUp
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -977,3 +977,10 @@
 [0mPOST /like/toggle/?id=6383d056acf700b5786c6671&type=Comment [32m200[0m 19.538 ms - 57[0m
 [0mPOST /like/toggle/?id=6383d056acf700b5786c6671&type=Comment [32m200[0m 13.966 ms - 56[0m
 [0mGET / [36m304[0m 310.014 ms - -[0m
+[0mGET / [36m304[0m 103.253 ms - -[0m
+[0mGET / [36m304[0m 59.784 ms - -[0m
+[0mGET /user/sign_out [36m302[0m 17.380 ms - 46[0m
+[0mGET / [32m200[0m 77.399 ms - 11336[0m
+[0mGET /user/sign_in [36m304[0m 10.054 ms - -[0m
+[0mGET /user/forgot-password [32m200[0m 8.428 ms - 2186[0m
+[0mPOST /user/reset-password [32m200[0m 23.049 ms - 1943[0m
