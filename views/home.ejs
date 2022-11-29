@@ -5,82 +5,85 @@
 
     <section id="feed-posts">
 
-        <section id="post-form">
+        <%if(locals.user){%>
+            <section id="post-form">
 
-            <%if(locals.user){%>
                 <form action="/post/create-post" id="new-post-form" method="post">
                     <input id="content" name="content" placeholder="Write here..."></input>
+                    <!-- <input type="file" name="img" placeholder="Post Img"> -->
                     <input id="submit" type="submit" value="Post">
                 </form>
-                <%}%>
 
-        </section>
+            </section>
+            <%}%>
 
-        <h2>Feed</h2>
-        <section id="posts-list-container">
-            <ul id="post-list">
-                <% for(post of posts){ %>
+                <h2>Feed</h2>
+                <section id="posts-list-container">
+                    <ul id="post-list">
+                        <% for(post of posts){ %>
 
-                    <%-include('_post.ejs')-%>
+                            <%-include('_post.ejs')-%>
 
-                        <%} %>
-            </ul>
-        </section>
+                                <%} %>
+                    </ul>
+                </section>
 
 
     </section>
 
     <aside>
-        <section id="friend_list">
-            <h4 class="heading">Friends</h4>
-            <%if(locals.user){%>
+        <%if(locals.user){%>
+            <section id="friend_list">
+                <h4 class="heading">Friends</h4>
                 <ul class="list">
                     <%for(friend of friends){%>
                         <%if(friend.from_user==user.id){%>
                             <li class="items">
                                 <p>
-                                    <img class="logo" src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="20">
+                                    <img class="logo" src="<%= friend.to_user.avatar %>"
+                                        alt="<%= friend.to_user.name %>" width="20">
                                 <p class="name">
                                     <%= friend.to_user.name %>
                                 </p>
                                 </p>
-                                <p >
-                                    <a class="remove" href="/friendship/toggle/?id=<%=friend.to_user._id%>" class="toggle-friend">
-                                        x
+                                <p>
+                                    <a class="remove" href="/friendship/toggle/?id=<%=friend.to_user._id%>"
+                                        class="toggle-friend">
+                                        <i class="fa-solid fa-user-xmark fa-1x"></i>
                                     </a>
                                 </p>
                             </li>
                             <%}%>
                                 <%}%>
                 </ul>
-                <%}%>
-        </section>
+            </section>
+            <%}%>
 
-        <section id="user_list">
-            <h4 class="heading">Users</h4>
-            <ul class="list">
-                <%for(u of all_user){%>
-                    <%if(locals.user){%>
-                        <%if(locals.user.name!=u.name){%>
-                            <li class="items">
-                                <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
-                                <a href="/user/profile/<%=u.id%>">
-                                    <%=u.name%>
-                                </a>
-                            </li>
-                            <%}%>
-                                <%}else{%>
-                                    <li>
+                <section id="user_list">
+                    <h4 class="heading">Users</h4>
+                    <ul class="list">
+                        <%for(u of all_user){%>
+                            <%if(locals.user){%>
+                                <%if(locals.user.name!=u.name){%>
+                                    <li class="items">
                                         <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
                                         <a href="/user/profile/<%=u.id%>">
                                             <%=u.name%>
                                         </a>
                                     </li>
                                     <%}%>
+                                        <%}else{%>
+                                            <li>
+                                                <img class="logo" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                                <a href="/user/profile/<%=u.id%>">
+                                                    <%=u.name%>
+                                                </a>
+                                            </li>
+                                            <%}%>
 
-                                        <%}%>
-            </ul>
-        </section>
+                                                <%}%>
+                    </ul>
+                </section>
 
     </aside>
 

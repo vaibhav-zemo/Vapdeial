@@ -76,9 +76,10 @@
             margin-right: 10px;
           }
 
-          a{
+          a {
             position: absolute;
             right: 0;
+            color: red;
           }
         }
         #content {
@@ -104,10 +105,14 @@
             margin: 8px 2px;
             a {
               text-decoration: none;
-              background: blue;
-              color: #fff;
-              border-radius: 10px;
-              padding: 2px 6px;
+              color: black;
+
+              span {
+                // color: blue;
+                i {
+                  font-size: 17px;
+                }
+              }
             }
           }
 
@@ -132,6 +137,56 @@
         .post-comments-list {
           ul {
             list-style: none;
+            padding: 0;
+            li {
+              display: flex;
+              flex-direction: column;
+              padding: 0;
+              align-items: center;
+              border: none;
+              flex-wrap: wrap;
+              height: auto;
+              width: 100%;
+
+              #first {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                #photo {
+                  img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                  }
+                }
+
+                #content {
+                  height: 30px;
+                  width: 100%;
+                  border: none;
+                  margin: 0;
+                  justify-content: start;
+                  margin-left: 9px;
+                  small {
+                    font-weight: 800;
+                    margin-right: 5px;
+                  }
+                }
+              }
+
+              #button {
+                display: flex;
+                width: 67%;
+                #love a {
+                  text-decoration: none;
+                  color: black;
+                }
+
+                #delete{
+                  margin-left: 15px;
+                }
+              }
+            }
           }
         }
       }
@@ -173,11 +228,7 @@
         }
 
         .remove {
-          text-decoration: none;
-          background: red;
-          color: #fff;
-          padding: 1px 5px;
-          border-radius: 50%;
+          color: red;
         }
       }
 
@@ -196,7 +247,6 @@
         justify-content: flex-start;
         gap: 18px;
       }
-
     }
   }
 }

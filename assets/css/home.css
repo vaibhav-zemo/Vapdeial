@@ -65,7 +65,8 @@
             margin-right: 10px; }
           #user-container #feed-posts #posts-list-container #post-list #head a {
             position: absolute;
-            right: 0; }
+            right: 0;
+            color: red; }
         #user-container #feed-posts #posts-list-container #post-list #content {
           border-radius: 11px;
           width: 200px;
@@ -85,10 +86,9 @@
             margin: 8px 2px; }
             #user-container #feed-posts #posts-list-container #post-list #comment #like-comment a {
               text-decoration: none;
-              background: blue;
-              color: #fff;
-              border-radius: 10px;
-              padding: 2px 6px; }
+              color: black; }
+              #user-container #feed-posts #posts-list-container #post-list #comment #like-comment a span i {
+                font-size: 17px; }
           #user-container #feed-posts #posts-list-container #post-list #comment form {
             width: 100%;
             border-top: 1px solid lightgrey; }
@@ -103,7 +103,43 @@
               background: none;
               color: blue; }
         #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul {
-          list-style: none; }
+          list-style: none;
+          padding: 0; }
+          #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            align-items: center;
+            border: none;
+            flex-wrap: wrap;
+            height: auto;
+            width: 100%; }
+            #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #first {
+              display: flex;
+              align-items: center;
+              width: 100%; }
+              #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #first #photo img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%; }
+              #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #first #content {
+                height: 30px;
+                width: 100%;
+                border: none;
+                margin: 0;
+                justify-content: start;
+                margin-left: 9px; }
+                #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #first #content small {
+                  font-weight: 800;
+                  margin-right: 5px; }
+            #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #button {
+              display: flex;
+              width: 67%; }
+              #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #button #love a {
+                text-decoration: none;
+                color: black; }
+              #user-container #feed-posts #posts-list-container #post-list .post-comments-list ul li #button #delete {
+                margin-left: 15px; }
   #user-container aside {
     width: 41%; }
     #user-container aside .heading {
@@ -130,11 +166,7 @@
         #user-container aside .list .items .name {
           width: 170px; }
         #user-container aside .list .items .remove {
-          text-decoration: none;
-          background: red;
-          color: #fff;
-          padding: 1px 5px;
-          border-radius: 50%; }
+          color: red; }
       #user-container aside .list .items:last-child {
         border: none; }
     #user-container aside #user_list a {

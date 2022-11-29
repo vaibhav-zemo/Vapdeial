@@ -1,26 +1,50 @@
 <li id="comment-<%=comment.id%>">
-    <p>
-        <%if(locals.user && user.id==comment.user._id){%>
-            <a class="comment-delete-button" href="/comment/destroy-comment/<%=comment.id%>">
-                Delete
-            </a>
-        <%}%>
+    <div id="first">
 
-        <%= comment.content %>
-        <br>
-        <small>
-            <%= comment.user.name %> 
-        </small>
+        <div id="photo">
+            <img src="<%= comment.user.avatar %>" alt="">
+        </div>
 
-        <small>
+
+        <div id="content">
+            <small>
+                <%= comment.user.name %>
+            </small>
+                <%= comment.content %>
+        </div>
+
+    </div>
+    <div id="button">
+
+        <div id="love">
             <% if(locals.user) {%>
-                <a class="toggle-like-button" data-likes="<%=comment.likes.length %>" href="/like/toggle/?id=<%=comment._id%>&type=Comment">
-                    <%=comment.likes.length%> Likes
-                </a>
-            <%}else{%>
-                <%=comment.likes.length%> Likes
-            <%}%>
-        </small>
+                <a class="toggle-like-button" data-likes="<%=comment.likes.length %>"
+                    href="/like/toggle/?id=<%=comment._id%>&type=Comment">
 
-    </p>
+                    <% if(comment.likes.length==1){%>
+                        <span style="color: blue;">
+                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                        </span>
+                        <%}else{%>
+                            <span style="color: black;">
+                                <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                            </span>
+                            <%} %>
+
+                                <%=comment.likes.length%> Likes
+                </a>
+                <%}else{%>
+                    <%=comment.likes.length%> Likes
+                        <%}%>
+        </div>
+
+        <div id="delete">
+            <%if(locals.user && user.id==comment.user._id){%>
+                <a class="comment-delete-button" style="color: red; text-decoration: none;"
+                    href="/comment/destroy-comment/<%=comment.id%>">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+                <%}%>
+        </div>
+    </div>
 </li>

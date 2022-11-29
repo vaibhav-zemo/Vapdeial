@@ -12,13 +12,14 @@
 
         <% if(locals.user && post.user.id==user.id){%>
             <a class="delete-button" href="/post/destroy/<%=post.id%>">
-                Delete
+                <i class="fa-solid fa-trash"></i>
             </a>
             <%}%>
 
     </div>
 
     <div id="content">
+        <!-- <img src="<%= post.img %>" name="img" alt="<%= post.user.name %>" width="20"> -->
         <p>
             <%= post.content %>
         </p>
@@ -27,14 +28,26 @@
     <div id="comment">
 
         <small id="like-comment">
-            <% if(locals.user) {%>
+            <% if(locals.user) 
+            {%>
                 <a class="toggle-like-button" data-likes="<%=post.likes.length %>"
                     href="/like/toggle/?id=<%=post._id%>&type=Post">
+                    <% if(post.likes.length==1){%>
+                        <span style="color: blue;">
+                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                        </span>
+                    <%}else{%>
+                        <span style="color: black;">
+                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
+                        </span>
+                    <%} %>
                     <%=post.likes.length%> Likes
                 </a>
-                <%}else{%>
-                    <%=post.likes.length %> Likes
-                        <%}%>
+            <%}
+            else
+            {%>
+                <%=post.likes.length %> Likes
+            <%}%>
 
         </small>
         <% if (locals.user){ %>
