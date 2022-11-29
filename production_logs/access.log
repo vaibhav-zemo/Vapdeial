@@ -971,3 +971,9 @@
 [0mGET / [36m304[0m 293.824 ms - -[0m
 [0mPOST /like/toggle/?id=6385db1f6e4e7e593e7b8cb2&type=Post [32m200[0m 34.481 ms - 57[0m
 [0mPOST /like/toggle/?id=6385db1f6e4e7e593e7b8cb2&type=Post [32m200[0m 19.682 ms - 56[0m
+[0mGET / [36m304[0m 207.425 ms - -[0m
+[0mPOST /like/toggle/?id=6385db1f6e4e7e593e7b8cb2&type=Post [32m200[0m 35.630 ms - 57[0m
+[0mPOST /like/toggle/?id=6385db1f6e4e7e593e7b8cb2&type=Post [32m200[0m 15.606 ms - 56[0m
+[0mPOST /like/toggle/?id=6383d056acf700b5786c6671&type=Comment [32m200[0m 19.538 ms - 57[0m
+[0mPOST /like/toggle/?id=6383d056acf700b5786c6671&type=Comment [32m200[0m 13.966 ms - 56[0m
+[0mGET / [36m304[0m 310.014 ms - -[0m
