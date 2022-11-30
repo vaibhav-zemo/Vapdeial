@@ -15,7 +15,7 @@ const development = {
     name: 'development',
     assets_path: './assets',
     cookie_key: 'blahsomething',
-    db: 'codeial_development',
+    db: 'mongodb+srv://vapking:UN7lxXoBwWgRrOGV@cluster0.3llibt4.mongodb.net/?retryWrites=true&w=majority',
     smpt: {
         service: 'gmail',
         host: 'smtp.gmail.com',

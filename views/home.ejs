@@ -7,11 +7,12 @@
 
         <%if(locals.user){%>
             <section id="post-form">
-
-                <form action="/post/create-post" id="new-post-form" method="post">
-                    <!-- <input id="content" name="content" placeholder="Write here..."></input> -->
-                    <textarea id="content" name="content" placeholder="Write here... "></textarea>
-                    <!-- <input type="file" name="img" placeholder="Post Img"> -->
+                <h1>What's On Your Mind</h1>
+                <form action="/post/create-post"  enctype="multipart/form-data" method="post">
+                    <div id="input">
+                        <textarea id="content" name="content" placeholder="Write here... "></textarea>
+                        <input id="file" type="file" name="img" placeholder="Post Img">
+                    </div>
                     <input id="submit" type="submit" value="Post">
                 </form>
 
@@ -36,8 +37,9 @@
         <%if(locals.user){%>
             <section id="friend_list">
                 <h4 class="heading">Friends</h4>
-                <ul class="list">
-                    <%for(friend of friends){%>
+                <%if(locals.user.friendship.length){%>
+                    <ul class="list">
+                        <%for(friend of friends){%>
                         <%if(friend.from_user==user.id){%>
                             <li class="items">
                                 <p>
@@ -54,11 +56,19 @@
                                     </a>
                                 </p>
                             </li>
-                            <%}%>
-                                <%}%>
+                        <%}%>
+                    <%}%>
                 </ul>
+                <%}else{%>
+                    <ul class="list" style="list-style: none;">
+                        <li id="items">
+                            <p>No Friends. But You Can Make Them 😉</p>
+                        </li>
+                    </ul>
+                <%}%>
+
             </section>
-            <%}%>
+        <%}%>
 
                 <section id="user_list">
                     <h4 class="heading">Users</h4>

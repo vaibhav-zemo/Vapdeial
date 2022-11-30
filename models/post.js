@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const multer = require('multer');
+const path = require('path');
+const IMG_PATH = path.join('/upload/posts/images');
 
-const postSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
@@ -17,12 +20,28 @@ const postSchema = new mongoose.Schema({
     likes:{
         type:[mongoose.Schema.Types.ObjectId],
         ref:'Like'
+    },
+    img:{
+        type: String,
     }
-
 }, {
     timestamps: true
 });
 
 
-const Post = mongoose.model('Post', postSchema);
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '..', IMG_PATH));
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+
+PostSchema.statics.uploadImg = multer({ storage: storage }).single('img');
+PostSchema.statics.imgPath = IMG_PATH;
+
+
+const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;

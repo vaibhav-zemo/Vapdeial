@@ -20,7 +20,7 @@ module.exports.createComment = async function (req, res) {
         post.comments.push(comment);
         post.save();
 
-        comment = await comment.populate('user', 'name email');
+        comment = await comment.populate('user', 'name email avatar');
 
         // comment_mailer.newComment(comment);
 
