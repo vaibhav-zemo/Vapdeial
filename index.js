@@ -65,7 +65,7 @@ app.use(session({
     },
     store: MongoStore.create(
         {
-            mongoUrl: env.db,
+            mongoUrl: 'mongodb://0.0.0.0/codeial_db',
             mongooseConnection: mongodb,
             autoRemove: 'disabled'
         }, function (err) {

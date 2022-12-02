@@ -15,7 +15,7 @@ const development = {
     name: 'development',
     assets_path: './assets',
     cookie_key: 'blahsomething',
-    db: 'mongodb+srv://vapking:UN7lxXoBwWgRrOGV@cluster0.3llibt4.mongodb.net/?retryWrites=true&w=majority',
+    db: 'codeial_development',
     smpt: {
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -26,8 +26,8 @@ const development = {
             pass: 'Codeial@2022'
         }
     },
-    google_clientID: "493719420537-8cab53nces9kq1i4qefpd2c37nj3jcne.apps.googleusercontent.com",
-    google_clientSecret: "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",
+    google_clientID: "493719420537-bcuehthlovmo21pvjh3pbbca7l8kbih4.apps.googleusercontent.com",
+    google_clientSecret: "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",
     google_callbackURL: "http://localhost:8000/user/auth/google/callback",
     jwt_screat: 'codeial',
     morgan: {
@@ -66,4 +66,4 @@ const production = {
     }
 }
 
-module.exports = eval(process.env.NODE_ENV) == undefined ? development : eval(process.env.NODE_ENV);
+module.exports = eval(process.env.CODEIAL_ENVIRONMENT) == undefined ? development : eval(process.env.CODEIAL_ENVIRONMENT);
