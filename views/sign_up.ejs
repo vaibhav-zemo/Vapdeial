@@ -1,5 +1,44 @@
 <link rel="stylesheet" href="<%= assetPath('css/signout.css') %>">
+
 <div id="main">
+    <!-- sign-up section -->
+    <section class="sign-up">
+        <!-- the form itself -->
+        <form class="sign-up__form" action="/user/create_user" method="post">
+            <div class="form__input">
+                <input class="" type="text" name="name" id="first-name" placeholder="First Name" value=""
+                    required>
+                <span class="warning-icon">!</span>
+                <p class="warning">First name cannot be empty</p>
+            </div>
+
+            <div class="form__input">
+                <input class="" type="email" name="email" id="email" placeholder="Email Address" value="" required>
+                <span class="warning-icon">!</span>
+                <p class="warning">Looks like this is not an email</p>
+            </div>
+
+            <div class="form__input">
+                <input class="" type="Password" name="password" id="Password" placeholder="Password" value="" required>
+                <span class="warning-icon">!</span>
+                <p class="warning">Password cannot be empty</p>
+            </div>
+
+            <div class="form__input">
+                <input class="" type="Password" name="confirm_password" id="Password" placeholder="Confirm Your Password" value="" required>
+                <span class="warning-icon">!</span>
+                <p class="warning">Password cannot be empty</p>
+            </div>
+
+            <input class="submit-btn" type="submit" value="Sign Up">
+            <p class="form__terms">By clicking the button, you are agreeing to our <span>Terms and Services</span> </p>
+        </form>
+        <!-- form ends -->
+    </section>
+    <!-- sign-up ends -->
+</div>
+
+<!-- <div id="main">
     <div id="signout_box">
 
         <h1>Sign Up</h1>
@@ -20,4 +59,4 @@
             </p>
         </div>
     </div>
-</div>
+</div> -->

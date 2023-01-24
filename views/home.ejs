@@ -77,7 +77,7 @@
                             <%if(locals.user){%>
                                 <%if(locals.user.name!=u.name){%>
                                     <li class="itemsa">
-                                        <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                        <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" onerror="this.onerror=null; this.src='img/Default.png'" width="20">
                                         <a href="/user/profile/<%=u.id%>">
                                             <%=u.name%>
                                         </a>
@@ -85,7 +85,7 @@
                                     <%}%>
                                         <%}else{%>
                                             <li>
-                                                <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" width="20">
+                                                <img class="logoa" src="<%= u.avatar %>" alt="<%= u.name %>" onerror="this.onerror=null; this.src='img/Default.png'" width="20">
                                                 <a href="/user/profile/<%=u.id%>">
                                                     <%=u.name%>
                                                 </a>
@@ -102,12 +102,6 @@
 
         <section id="chatting-engine">
             <ul id="chat">
-                <li class="other-message">
-                    <p></p>
-                </li>
-                <li class="self-message">
-                    <p></p>
-                </li>
             </ul>
             <div id="message">
                 <form action="" method="post" id="chatting-form">
@@ -132,11 +126,11 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
-<script src="<%= assetPath('js/chat_engine.js') %>"></script>
+<script src="js/chat_engine.js"></script>
 
 <%if(locals.user){%>
     <script>
-        new ChatEngine('chatting-engine', '<%= locals.user.email %>');
+        new ChatEngine('chatting-engine', '<%= locals.user.email %>','<%= locals.user.name %>');
 
         var down = setInterval(function () {
             var scrollbar = document.querySelector('#chat');

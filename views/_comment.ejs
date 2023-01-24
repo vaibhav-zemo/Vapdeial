@@ -16,20 +16,14 @@
     </div>
     <div id="button">
 
-        <div id="love">
+        <div id="love" style="margin-top: 10px;">
             <% if(locals.user) {%>
                 <a class="toggle-like-button" data-likes="<%=comment.likes.length %>"
                     href="/like/toggle/?id=<%=comment._id%>&type=Comment">
 
-                    <% if(comment.likes.length==1){%>
-                        <span style="color: blue;">
-                            <i class="fa-solid fa-thumbs-up fa-1x"></i>
-                        </span>
-                        <%}else{%>
                             <span style="color: black;">
                                 <i class="fa-solid fa-thumbs-up fa-1x"></i>
                             </span>
-                            <%} %>
 
                                 <%=comment.likes.length%> Likes
                 </a>

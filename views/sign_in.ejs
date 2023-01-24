@@ -1,5 +1,45 @@
 <link rel="stylesheet" href="<%= assetPath('css/signIn.css') %>">
-<div style="height: 65.4%;">
+<main class="main">
+	<div class="container">
+		<section class="wrapper">
+			<div class="heading">
+				<h1 class="text text-large">Sign In</h1>
+				<p class="text text-normal">New user? <span><a href="/user/sign_out" class="text text-links">Create an account</a></span>
+				</p>
+			</div>
+			<form action="/user/create-session" name="signin" class="form" method="post">
+				<div class="input-control">
+					<label for="email" class="input-label" hidden>Email Address</label>
+					<input type="email" name="email" id="email" class="input-field" placeholder="Email Address">
+				</div>
+				<div class="input-control">
+					<label for="password" class="input-label" hidden>Password</label>
+					<input type="password" name="password" id="password" class="input-field" placeholder="Password">
+				</div>
+				<div class="input-control">
+					<a href="/user/forgot-password" class="text text-links">Forgot Password</a>
+					<input type="submit" name="submit" class="input-submit" value="Sign In">
+				</div>
+			</form>
+			<div class="striped">
+				<span class="striped-line"></span>
+				<span class="striped-text">Or</span>
+				<span class="striped-line"></span>
+			</div>
+			<div class="method">
+				<div class="method-control">
+					<a href="/user/auth/google" class="method-action">
+                        <div style="color: red; margin-right: 10px;">
+                            <i class="fa-brands fa-google"></i>
+                        </div>
+						<span>Sign in with Google</span>
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+<!-- <div style="height: 65.4%;">
 
     <div id="sign_in_box">
 
@@ -23,4 +63,4 @@
             </p>
         </div>
     </div>
-</div>
+</div> -->

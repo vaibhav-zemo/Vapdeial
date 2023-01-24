@@ -1,79 +1,219 @@
-header {
-  width: 100%;
-  height: auto;
+body {
+  margin: 0; }
+
+.HeaderBar {
+  background-color: #141414;
+  display: flex;
+  padding: 3px 5%; }
+
+.None,
+.LogoMenu,
+.SwitchMenuMobile {
+  display: none; }
+
+.LogoHeader > img {
+  width: 76px;
+  padding: 10px 0px; }
+
+.LogoHeader div {
+  color: white;
+  font-size: large; }
+
+.LogoHeader {
+  margin: auto 0;
+  display: flex;
+  align-items: center; }
+
+li {
+  display: block; }
+
+ul {
+  display: flex; }
+
+.Loginbtn {
+  background: none;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: white; }
+
+.Registerbtn {
+  background: none;
+  border: 1px solid;
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: white; }
+
+button,
+.SwitchMenuMobile {
+  cursor: pointer; }
+
+.Registerbtn:hover {
+  background-color: #00a2ff;
+  border-color: #00a2ff; }
+
+.MenuTitle > a {
+  color: white;
+  padding: 0 10px;
+  text-decoration: auto;
+  font-size: 16px; }
+
+.MenuHeader {
+  margin: auto 0; }
+
+* {
+  font-family: "Inter", sans-serif; }
+
+.ButtonHeader {
+  margin-left: auto; }
+
+.ButtonHeader ul {
+  align-items: center; }
+  .ButtonHeader ul li {
+    display: flex; }
+    .ButtonHeader ul li a {
+      text-decoration: none; }
+
+.MenuMobile {
+  width: 100%; }
+
+.BoxMenuMobile {
+  display: flex;
+  z-index: 99999; }
+
+@media screen and (max-width: 900px) {
+  .SwitchMenuMobile {
+    border: 1px solid;
+    border-radius: 3px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    margin: auto 0 auto auto; }
+  .MenuMobile {
+    margin-top: -3px;
+    animation-name: open;
+    animation-duration: 1s;
+    right: 0%; }
+  .CloseMenu {
+    animation-name: close;
+    animation-duration: 1s;
+    right: 100%; }
+  .BoxMenuMobile {
+    display: block; }
+  .SwitchMenuMobile > div {
+    margin: 5.7px 4px;
+    background-color: white;
+    padding: 1px 2px; }
+  .MenuMobile {
+    z-index: 9999;
+    background-color: #0000008c;
+    width: 100%;
+    height: 100%;
+    position: absolute; }
+  .BoxMenuMobile {
+    width: 45%;
+    background: #202020;
+    height: 100%;
+    position: absolute;
+    right: 0px; }
+  .LogoMenu > img {
+    width: 150px; }
+  .LogoMenu {
+    width: 150px;
+    margin: 25px auto; }
+  .SwitchMenuMobile,
+  .LogoMenu {
+    display: block; }
+  .ButtonHeader {
+    position: absolute;
+    right: 16px;
+    bottom: 0; }
+  .MenuTitle {
+    text-align: right;
+    margin: 16px 7px 0 0; }
+  .MenuHeader > ul {
+    display: block;
+    margin-bottom: auto; } }
+
+@media screen and (min-width: 900px) {
+  .MenuMobile {
+    display: block !important; } }
+
+@media screen and (max-width: 550px) {
+  .BoxMenuMobile {
+    width: 60% !important; } }
+
+@media screen and (max-width: 380px) {
+  .BoxMenuMobile {
+    width: 85% !important; } }
+
+@keyframes open {
+  from {
+    right: 100%; }
+  to {
+    right: 0%; } }
+
+@keyframes close {
+  from {
+    right: 0%; }
+  to {
+    right: 100%; } }
+
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  .dropdown img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; }
+
+.dropdown > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw; }
+
+.dropdown > ul {
+  position: absolute;
+  z-index: 999;
+  display: block;
+  left: -105vw;
+  top: calc(1.5em + 14px);
+  border: 1px solid #8c8c8c;
+  background: #fff;
+  padding: 6px 0;
   margin: 0;
-  padding: 0;
-  background-color: aquamarine; }
-  header nav {
-    display: flex;
-    justify-content: space-between; }
-    header nav h1 {
-      margin-left: 10px; }
-      header nav h1 a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: 800;
-        font-size: 28px; }
-    header nav #second {
-      width: 155px;
-      list-style: none;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-      margin-right: 8px;
-      align-items: center;
-      margin-right: 8px; }
-      header nav #second li a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 21px; }
-      header nav #second img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%; }
-      header nav #second .dropdown {
-        position: relative;
-        display: inline-block; }
-      header nav #second .dropdown > input[type="checkbox"] {
-        position: absolute;
-        left: -100vw; }
-      header nav #second .dropdown > ul {
-        position: absolute;
-        z-index: 999;
-        display: block;
-        left: -105vw;
-        top: calc(1.5em + 14px);
-        border: 1px solid #8c8c8c;
-        background: #fff;
-        padding: 6px 0;
-        margin: 0;
-        list-style: none;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-        -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); }
-      header nav #second .dropdown > ul a {
-        display: block;
-        padding: 6px 15px;
-        text-decoration: none;
-        color: #333; }
-      header nav #second .dropdown > ul a:hover,
-      header nav #second .dropdown > ul a:focus {
-        background: #ececec; }
-      header nav #second .dropdown > input[type="checkbox"]:checked ~ ul,
-      header nav #second .dropdown > ul:target {
-        left: -62px;
-        top: 45px; }
-      header nav #second .dropdown a.close {
-        display: none; }
-      header nav #second .dropdown > ul:target ~ a.close {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        text-indent: -100vw;
-        z-index: 1000; }
+  list-style: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); }
+
+.dropdown > ul a {
+  display: block;
+  padding: 6px 15px;
+  text-decoration: none;
+  color: #333; }
+
+.dropdown > ul a:hover,
+.dropdown > ul a:focus {
+  background: #ececec; }
+
+.dropdown > input[type="checkbox"]:checked ~ ul,
+.dropdown > ul:target {
+  left: -63px;
+  top: 45px; }
+
+.dropdown a.close {
+  display: none; }
+
+.dropdown > ul:target ~ a.close {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-indent: -100vw;
+  z-index: 1000; }

@@ -1,5 +1,5 @@
 #chatting-engine {
-  z-index: 1;
+  z-index: 10000;
   height: 190px;
   width: 217px;
   position: fixed;
@@ -13,31 +13,45 @@
     margin: 0px;
     padding: 0px;
     list-style: none;
-    overflow: scroll; }
+    overflow: scroll;
+    display: flex;
+    flex-direction: column; }
+    #chatting-engine #chat li {
+      width: 100%;
+      height: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      align-items: self-end;
+      margin: 10px 1px; }
     #chatting-engine #chat .other-message {
-      position: relative; }
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; }
       #chatting-engine #chat .other-message p {
-        width: 50%;
-        background-color: aqua;
-        text-align: center;
-        overflow-wrap: break-word; }
-      #chatting-engine #chat .other-message sub {
-        position: absolute;
-        top: 20px;
-        font-size: 10px; }
-    #chatting-engine #chat .self-message {
-      position: relative; }
-      #chatting-engine #chat .self-message p {
-        width: 50%;
-        text-overflow: ellipsis;
         background-color: aquamarine;
-        text-align: center;
-        margin-left: 50%; }
-      #chatting-engine #chat .self-message sub {
-        font-size: 10px;
-        position: absolute;
-        right: 0px;
-        top: 21px; }
+        margin: 0;
+        padding: 5px 10px;
+        width: auto;
+        border: 2px solid darkgreen;
+        border-radius: 19px;
+        min-width: 35px;
+        text-align: center; }
+    #chatting-engine #chat .self-message {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end; }
+      #chatting-engine #chat .self-message p {
+        background-color: aquamarine;
+        margin: 0;
+        padding: 5px 10px;
+        width: auto;
+        border: 2px solid darkgreen;
+        border-radius: 19px;
+        min-width: 35px;
+        text-align: center; }
   #chatting-engine #chat::-webkit-scrollbar {
     display: none; }
   #chatting-engine #chatting-form {

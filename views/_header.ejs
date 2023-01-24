@@ -1,41 +1,49 @@
 <header>
-    <nav>
-        <h1>
-            <a href="/">
-                Codeial
-            </a>
-        </h1>
-        <ul id="second">
-            <% if(locals.user) {%>
-                <div class="dropdown">
-                    <input type="checkbox" id="my-dropdown" value="" name="my-checkbox">
-                    <label for="my-dropdown"
-                       data-toggle="dropdown">
-                    <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" width="20">
-                    </label>
-                    <ul>
-                        <a href="/user/profile/<%=user.id%>">
-                            My Profile
-                        </a>
-                        <a href="/user/sign_out">
-                            Sign Out
-                        </a>
+    <div class="HeaderBar">
+        <div class="LogoHeader">
+            <img src="img/logo.png" alt="Logo co.">
+            <div>Vapdeial</div>
+        </div>
+        <div class="MenuMobile None" id="MenuMobile">
+            <div class="BoxMenuMobile">
+                <div class="LogoMenu">
+                    <img src="img/logo.png" alt="Logo co.">
+                </div>
+                <div class="ButtonHeader">
+                    <ul style="margin-top: 10px;">
+                        <%if(locals.user){%>
+                            <div class="dropdown">
+                                <input type="checkbox" id="my-dropdown" value="" name="my-checkbox">
+                                <label for="my-dropdown" data-toggle="dropdown">
+                                    <img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>" onerror="this.onerror=null; this.src='img/Default.png'" width="20" style="color: white;">
+                                </label>
+                                <ul>
+                                    <a href="/user/profile/<%=user.id%>">
+                                        My Profile
+                                    </a>
+                                    <a href="/user/sign_out">
+                                        Sign Out
+                                    </a>
+                                </ul>
+                            </div>
+                        <%}else{%>
+                            <li style="margin: 5px; ">
+                                <a href="/user/sign_in" class="Registerbtn">Sign In</a>
+                            </li>
+                            <li style="margin: 5px; ">
+                                <a href="/user/sign_up" class="Registerbtn">Sign Up</a>
+                            </li>
+                        <%}%>
                     </ul>
                 </div>
-            <%}
-            else
-            {%>
-                <li>
-                    <a href="/user/sign_in">
-                        Sign In
-                    </a>
-                </li>
-                <li>
-                    <a href="/user/sign_up">
-                        Sign Up
-                    </a>
-                </li>
-            <%}%>
-        </ul>
-    </nav>
+            </div>
+        </div>
+        <div class="SwitchMenuMobile" id="SwitchMenuMobile">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 </header>
+
+<script src="<%= assetPath('js/header.js') %>"></script>
