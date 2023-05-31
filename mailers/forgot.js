@@ -10,7 +10,7 @@ exports.forgot = async (mail) => {
     let htmlString = mailer.renderTemplate({ token: password }, '/forgot_mailer.ejs');
 
     mailer.transporter.sendMail({
-        from: 'codieal456@gmail.com',
+        from: 'peakyblinders852947@gmail.com',
         to: mail,
         subject: 'Password Reset link',
         html: htmlString,

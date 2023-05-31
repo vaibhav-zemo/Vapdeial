@@ -1,0 +1,66 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  min-height: 60%; }
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; }
+
+.name {
+  font-size: 24px;
+  margin-top: 20px; }
+
+.email {
+  margin-top: 10px;
+  color: gray; }
+
+.add-friend-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none; }
+
+.add-friend-btn:hover {
+  background-color: #0056b3; }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; }
+  .form-container #user_form {
+    width: 300px; }
+    .form-container #user_form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold; }
+    .form-container #user_form div {
+      margin-bottom: 20px; }
+    .form-container #user_form input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px; }
+    .form-container #user_form #submit {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      width: 30%;
+      margin: auto;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      cursor: pointer; }
+    .form-container #user_form #submit:hover {
+      background-color: #0056b3; }

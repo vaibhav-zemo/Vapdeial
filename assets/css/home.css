@@ -1,7 +1,9 @@
 #user-container {
   display: flex;
   margin: 50px auto;
-  width: 90%; }
+  width: 90%;
+  height: auto;
+  min-height: 40vh; }
   #user-container #feed-posts {
     display: flex;
     flex-direction: column;

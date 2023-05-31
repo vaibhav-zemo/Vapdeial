@@ -1,37 +1,52 @@
-<div style="height: 90vh;">
+<link rel="stylesheet" href="<%= assetPath('css/profile.css') %>">
 
-    <h1>User <%=title%>
-    </h1>
+<div class="profile">
 
-    <img src="<%= profile_user.avatar %>" alt="<%= profile_user.name %>" width="100">
+    <img class="profile-picture" src="<%= profile_user.avatar %>" alt="<%= profile_user.name %>" width="100">
 
     <%if(profile_user.id==user.id){%>
-        <form action="/user/update/<%=profile_user.id%>" enctype="multipart/form-data" method="post">
-            <input type="text" name="name" id="user_name" value="<%=profile_user.name%>" required>
-            <input type="text" name="email" id="email_name" value="<%=profile_user.email%>" required>
-            <input type="file" name="avatar" placeholder="Profile Picture">
-            <input type="submit" value="Confirm">
-        </form>
-    <%}else{%>
-        <p>
-            <%= profile_user.email%>
-        </p>
-        <p>
-            <%= profile_user.name%>
-        </p>
-    <%}%>
+        <div class="form-container">
+            <form id="user_form" action="/user/update/<%=profile_user.id%>" enctype="multipart/form-data" method="post">
+                <div id="name">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="user_name" value="<%=profile_user.name%>" placeholder="Your Name"
+                        required>
+                </div>
+                <div id="email">
 
-    <%if(profile_user.id!=user.id){%>
-        <small>
-            <a href="/friendship/toggle?id=<%=profile_user.id%>"  id="toggle-friend-button">
-                <%if(have){%>
-                    Remove
-                <%}else{%>
-                    Add
-                <%}%>
-            </a>
-        </small>
-    <%}%>
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email_name" value="<%=profile_user.email%>"
+                        placeholder="Your Email" required>
+                </div>
+                <input type="file" name="avatar" placeholder="Profile Picture">
+                <input id="submit" type="submit" value="Submit">
+            </form>
+        </div>
+        <%}else{%>
+            <h2 class="name">
+                <%= profile_user.email%>
+            </h2>
+            <p class="email">
+                <%= profile_user.name%>
+            </p>
+            <%}%>
+
+                <%if(profile_user.id!=user.id){%>
+
+
+                    <%if(have){%>
+                        <a href="/friendship/toggle?id=<%=profile_user.id%>" class="add-friend-btn"
+                            style="background-color: red;">
+                            Remove Friend
+                        </a>
+                        <%}else{%>
+                            <a href="/friendship/toggle?id=<%=profile_user.id%>" class="add-friend-btn"
+                                style="background-color: #007bff;">
+                                Add Friend
+                            </a>
+                            <%}%>
+
+                                <%}%>
 
 </div>
 

@@ -2,11 +2,14 @@
   display: flex;
   margin: 50px auto;
   width: 90%;
+  height: auto;
+  min-height: 40vh;
 
   #feed-posts {
     display: flex;
     flex-direction: column;
     width: 950px;
+
     h2 {
       color: grey;
       margin-bottom: -7px;
@@ -14,12 +17,14 @@
       border-bottom: 2px solid lightgrey;
       width: 88%;
     }
+
     #post-form {
       height: auto;
       padding: 5px 10px;
       border-radius: 11px;
       align-items: center;
       width: 240px;
+
       h1 {
         font-size: 24px;
         color: gray;
@@ -27,6 +32,7 @@
         margin: 0;
         margin-bottom: 10px;
       }
+
       form {
         display: flex;
         align-items: center;
@@ -35,9 +41,11 @@
         border-radius: 11px;
         padding: 10px 12px;
         width: 233px;
+
         #file {
           width: 100%;
         }
+
         #content {
           border: none;
           background-color: rgb(250, 250, 250);
@@ -64,6 +72,7 @@
 
     #posts-list-container {
       width: 100%;
+
       #post-list {
         display: flex;
         width: 100%;
@@ -90,6 +99,7 @@
           display: flex;
           align-items: center;
           margin-left: 7px;
+
           img {
             border-radius: 50%;
             width: 30px;
@@ -103,8 +113,10 @@
             color: red;
           }
         }
+
         #content {
           margin-top: 15px;
+
           img {
             width: 100%;
             height: 100%;
@@ -117,11 +129,13 @@
           #like-comment {
             display: block;
             margin: 8px 2px;
+
             a {
               text-decoration: none;
               color: black;
 
               span {
+
                 // color: blue;
                 i {
                   font-size: 17px;
@@ -133,12 +147,14 @@
           form {
             width: 100%;
             border-top: 1px solid lightgrey;
+
             #text {
               width: 159px;
               height: 34px;
               border-radius: 0;
               border: none;
             }
+
             #submit {
               width: 37px;
               border: none;
@@ -152,6 +168,7 @@
           ul {
             list-style: none;
             padding: 0;
+
             li {
               display: flex;
               flex-direction: column;
@@ -166,6 +183,7 @@
                 display: flex;
                 align-items: center;
                 width: 100%;
+
                 #photo {
                   img {
                     width: 30px;
@@ -181,6 +199,7 @@
                   margin: 0;
                   justify-content: start;
                   margin-left: 9px;
+
                   small {
                     font-weight: 800;
                     margin-right: 5px;
@@ -191,6 +210,7 @@
               #button {
                 display: flex;
                 width: 67%;
+
                 #love a {
                   text-decoration: none;
                   color: black;
@@ -210,6 +230,7 @@
   aside {
     width: 22%;
     margin-top: -23px;
+
     .heading {
       font-size: 22px;
       margin-bottom: 10px;
@@ -253,6 +274,7 @@
 
     #user_list {
       height: auto;
+
       ul {
         list-style: none;
         padding: 9px 13px;
@@ -265,6 +287,7 @@
         border-radius: 11px;
         padding: 0 16px;
         width: 100%;
+
         li {
           display: flex;
           align-items: center;

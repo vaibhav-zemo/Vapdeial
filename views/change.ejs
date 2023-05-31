@@ -1,5 +1,55 @@
-<form action="/user/change-password/<%=token%>" method="post">
-    <input type="password" name="password" placeholder="Enter Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="submit" value="Lets Go">
-</form>
+<style>
+    .container {
+        width: 400px;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: auto;
+        margin-top: 5%;
+        min-height: 35%;
+    }
+
+    h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <h2>Reset Password</h2>
+    <form action="/user/change-password/<%=token%>" method="post">
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <label for="confirm_password">Confirm Password:</label>
+
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required>
+        <input type="submit" value="Reset Password">
+    </form>
+</div>
